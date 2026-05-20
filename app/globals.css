@@ -5,6 +5,10 @@
   --foreground: #171717;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -22,5 +26,48 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.squircle {
+  corner-shape: squircle;
+}
+
+h1,
+h2,
+h3,
+p,
+small {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 48px;
+  letter-spacing: -0.05em;
+  line-height: 110%;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  line-height: 110%;
+  font-weight: normal;
+}
+
+p {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  line-height: 150%;
+  font-weight: normal;
+}
+
+small {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  line-height: 80%;
+}
+
+svg {
+  vector-effect: non-scaling-stroke;
 }
