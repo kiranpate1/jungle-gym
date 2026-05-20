@@ -1,20 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-:root {
+.flights-root {
   --window-width: clamp(0px, 90vw, 450px);
   --active-color: transparent;
   --tag-transition-close: 0.3s ease;
   --tag-transition-open: 0.5s cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-body {
+.flights-root {
   background-color: #070a0e;
-  width: 100vw;
-  height: 100vh;
+}
+
+.flights-root {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-* {
+.flights-root main {
+  width: 100%;
+  height: 100%;
+}
+
+.flights-root * {
   margin: 0;
   padding: 0;
   -ms-overflow-style: none;
@@ -22,18 +30,18 @@ body {
   text-rendering: geometricPrecision;
   box-sizing: border-box;
 }
-*::-webkit-scrollbar {
+.flights-root *::-webkit-scrollbar {
   display: none;
 }
 
-small {
+.flights-root small {
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
-h1,
-p {
+.flights-root h1,
+.flights-root p {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -41,38 +49,38 @@ p {
   font-variation-settings: "wdth" 100;
 }
 
-h1 {
+.flights-root h1 {
   font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.03em;
   color: rgba(255, 255, 255, 0.9);
 }
 
-p {
+.flights-root p {
   font-size: 16px;
   letter-spacing: 0.02em;
   line-height: 165%;
   white-space: nowrap;
 }
 
-small {
+.flights-root small {
   font-size: 14px;
   letter-spacing: -0.04em;
   line-height: 100%;
   white-space: nowrap;
 }
 
-.bold {
+.flights-root .bold {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.light {
+.flights-root .light {
   font-weight: 400;
   color: rgba(255, 255, 255, 0.45);
 }
 
-main {
+.flights-root main {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -85,22 +93,22 @@ main {
   align-items: center;
 }
 
-.background,
-.background svg {
+.flights-root .background,
+.flights-root .background svg {
   position: absolute;
   inset: 0;
 }
 
-.background svg:nth-child(2) {
+.flights-root .background svg:nth-child(2) {
   opacity: 1;
   transition: opacity 0.4s ease;
 }
-body.active .background svg:nth-child(2) {
+.flights-root.active .background svg:nth-child(2) {
   opacity: 0;
   transition: opacity 1.2s ease;
 }
 
-.window {
+.flights-root .window {
   position: relative;
   width: var(--window-width);
   height: 450px;
@@ -108,7 +116,7 @@ body.active .background svg:nth-child(2) {
   border-radius: 18px;
 }
 
-nav {
+.flights-root nav {
   position: absolute;
   top: 2px;
   left: 50%;
@@ -126,21 +134,21 @@ nav {
     width var(--tag-transition-close);
   overflow: hidden;
 }
-body.active nav {
+.flights-root.active nav {
   transition:
     background 0.4s,
     width var(--tag-transition-open);
 }
 
-body.lighter nav {
+.flights-root.lighter nav {
   background: #213b5c !important;
 }
 
-.toggle {
+.flights-root .toggle {
   background-color: transparent;
 }
 
-.toggle-content {
+.flights-root .toggle-content {
   padding: 0 12px 0 14px;
   height: 40px;
   display: flex;
@@ -149,21 +157,21 @@ body.lighter nav {
   background-color: transparent;
 }
 
-.filter-icon {
+.flights-root .filter-icon {
   height: 100%;
   display: flex;
   align-items: center;
   opacity: 0.5;
 }
 
-.active-tags {
+.flights-root .active-tags {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.active-tags .tray-item {
+.flights-root .active-tags .tray-item {
   background: #213b5c;
   /*   border: 2px solid rgba(45,50,61,0.45); */
   font-weight: 400;
@@ -174,7 +182,7 @@ body.lighter nav {
     left var(--tag-transition-close);
   pointer-events: none;
 }
-body.active nav .active-tags .tray-item {
+.flights-root.active nav .active-tags .tray-item {
   opacity: 1 !important;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
@@ -184,17 +192,17 @@ body.active nav .active-tags .tray-item {
     left var(--tag-transition-open);
 }
 
-.overflow {
+.flights-root .overflow {
   position: absolute;
   transform: translateX(4px);
   transition: opacity 0.4s;
 }
-body.active nav .overflow {
+.flights-root.active nav .overflow {
   opacity: 0 !important;
 }
 
-.icon,
-body.active nav .toggle:hover .icon {
+.flights-root .icon,
+.flights-root.active nav .toggle:hover .icon {
   background: currentColor;
   display: flex;
   flex-direction: center;
@@ -206,28 +214,28 @@ body.active nav .toggle:hover .icon {
   opacity: 0.5;
   transition: height 0.4s ease;
 }
-body.active nav .icon,
-.toggle:hover .icon {
+.flights-root.active nav .icon,
+.flights-root .toggle:hover .icon {
   height: 16px;
   transition: height 0.2s ease;
 }
-.test .icon {
+.flights-root .test .icon {
   height: 8px;
 }
-.stay-closed .icon:not(nav.active .stay-closed .icon) {
+.flights-root .stay-closed .icon:not(nav.active .stay-closed .icon) {
   height: 8px !important;
 }
-body.active nav .stay-open .icon {
+.flights-root.active nav .stay-open .icon {
   height: 16px !important;
 }
-.icon-top {
+.flights-root .icon-top {
   width: 100%;
   height: 4px;
   background: #04070d;
   border-radius: 2px;
 }
 
-.content {
+.flights-root .content {
   position: relative;
   height: 0px;
   background: #0e2037;
@@ -238,13 +246,13 @@ body.active nav .stay-open .icon {
     height 0.4s cubic-bezier(0.5, 0, 0.3, 1),
     border-radius 0.4s ease;
 }
-body.active nav .content {
+.flights-root.active nav .content {
   transition:
     height 0.6s cubic-bezier(0.5, 0, 0.3, 1),
     border-radius 0.4s ease;
 }
 
-.tray {
+.flights-root .tray {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -252,12 +260,12 @@ body.active nav .content {
   transform-origin: center top;
   transition: 0.6s ease;
 }
-body.active nav .tray {
+.flights-root.active nav .tray {
   transform: scaleY(1) !important;
   transition: 0.8s ease;
 }
 
-.tray-wrap {
+.flights-root .tray-wrap {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -265,7 +273,7 @@ body.active nav .tray {
   gap: 4px;
 }
 
-.tray-item {
+.flights-root .tray-item {
   height: 40px;
   padding: 0 10px 1px 10px;
   display: flex;
@@ -278,17 +286,17 @@ body.active nav .tray {
   color: rgba(255, 255, 255, 0.45);
   transition: transform 0.6s ease;
 }
-.tray-item:hover {
+.flights-root .tray-item:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-.tray-item svg {
+.flights-root .tray-item svg {
   width: 14px;
   opacity: 0.5;
 }
 
 /* flights */
-.flights-list {
+.flights-root .flights-list {
   position: relative;
   height: calc(100% - 36px);
   top: 40px;
@@ -301,32 +309,32 @@ body.active nav .tray {
   overflow: scroll;
 }
 
-.flight {
+.flights-root .flight {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
 }
 
-.flight-main {
+.flights-root .flight-main {
   display: flex;
   padding: 16px;
 }
 
-.departure,
-.arrival {
+.flights-root .departure,
+.flights-root .arrival {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.departure {
+.flights-root .departure {
   align-items: start;
 }
-.arrival {
+.flights-root .arrival {
   align-items: end;
 }
 
-.duration {
+.flights-root .duration {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -334,49 +342,49 @@ body.active nav .tray {
   gap: 4px;
 }
 
-.flight-border {
+.flights-root .flight-border {
   width: 100%;
   height: 2px;
   background-image: url('data:image/svg+xml,<svg width="4" height="2" viewBox="0 0 4 2" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" rx="1" fill="white" fill-opacity="0.1"/> </svg>');
   background-repeat: repeat;
 }
 
-.flight-details {
+.flights-root .flight-details {
   padding: 12px 16px;
   display: flex;
   align-items: center;
 }
 
-.airline {
+.flights-root .airline {
   flex: 1;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.airline-logo {
+.flights-root .airline-logo {
   width: 16px;
 }
 
-.price {
+.flights-root .price {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: end;
   gap: 6px;
 }
-.price.down {
+.flights-root .price.down {
   color: #4cdbb5;
 }
-.price.down svg {
+.flights-root .price.down svg {
   transform: scaleY(-1);
 }
-.price.up {
+.flights-root .price.up {
   color: #e2522f;
 }
 
 /* gradient blur stuffs */
-.gradient-blur {
+.flights-root .gradient-blur {
   position: absolute;
   top: 0 !important;
   left: 0 !important;
@@ -395,7 +403,7 @@ body.active nav .tray {
   transition: 1s ease-out;
 } */
 
-.gradient-blur > div {
+.flights-root .gradient-blur > div {
   position: absolute;
   inset: 0;
   opacity: 1;
@@ -403,7 +411,7 @@ body.active nav .tray {
     0.3s ease-out,
     opacity 0.6s 0.8s;
 }
-body.active nav .gradient-blur > div {
+.flights-root.active nav .gradient-blur > div {
   /*   opacity: 0; */
   backdrop-filter: blur(0px);
   inset: -100px;
@@ -413,7 +421,7 @@ body.active nav .gradient-blur > div {
     opacity 0.6s 0.6s;
 }
 
-.gradient-blur > div:nth-of-type(1) {
+.flights-root .gradient-blur > div:nth-of-type(1) {
   z-index: 1;
   backdrop-filter: blur(0.5px);
   -webkit-backdrop-filter: blur(0.5px);
@@ -424,7 +432,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 23%
   );
 }
-.gradient-blur > div:nth-of-type(2) {
+.flights-root .gradient-blur > div:nth-of-type(2) {
   z-index: 2;
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
@@ -435,7 +443,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 31%
   );
 }
-.gradient-blur > div:nth-of-type(3) {
+.flights-root .gradient-blur > div:nth-of-type(3) {
   z-index: 3;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -446,7 +454,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 39%
   );
 }
-.gradient-blur > div:nth-of-type(4) {
+.flights-root .gradient-blur > div:nth-of-type(4) {
   z-index: 4;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
@@ -457,7 +465,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 47%
   );
 }
-.gradient-blur > div:nth-of-type(5) {
+.flights-root .gradient-blur > div:nth-of-type(5) {
   z-index: 5;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -468,7 +476,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 55%
   );
 }
-.gradient-blur > div:nth-of-type(6) {
+.flights-root .gradient-blur > div:nth-of-type(6) {
   z-index: 6;
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
@@ -479,7 +487,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 63%
   );
 }
-.gradient-blur > div:nth-of-type(7) {
+.flights-root .gradient-blur > div:nth-of-type(7) {
   z-index: 7;
   backdrop-filter: blur(64px);
   -webkit-backdrop-filter: blur(64px);
@@ -490,7 +498,7 @@ body.active nav .gradient-blur > div {
     rgba(0, 0, 0, 1) 71%
   );
 }
-.gradient-blur > div:nth-of-type(8) {
+.flights-root .gradient-blur > div:nth-of-type(8) {
   z-index: 8;
   backdrop-filter: blur(128px);
   -webkit-backdrop-filter: blur(128px);
