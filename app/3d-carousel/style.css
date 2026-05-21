@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
+
+.carousel3d-root {
+  position: relative;
+  background: #fff;
+}
+
+.carousel3d-root * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.carousel3d-root .scroll-container {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: scroll;
+  padding: 0 50%;
+}
+
+.carousel3d-root .scroll-container > div {
+  flex: 0 0 auto;
+  width: 400px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.carousel3d-root .scroll-container > div > img {
+  width: 250px;
+  height: 400px;
+  background: red;
+  object-fit: cover;
+}
+
+.carousel3d-root .selectors {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+}
+
+.carousel3d-root .selector {
+  width: 6px;
+  height: 6px;
+  background: black;
+  border-radius: 50%;
+}
+
+.carousel3d-root h1 {
+  position: absolute;
+  color: #000;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Cutive Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+}

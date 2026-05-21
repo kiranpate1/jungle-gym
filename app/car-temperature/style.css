@@ -1,0 +1,493 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+.cartemperature-root * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cartemperature-root {
+  background: #000;
+}
+
+.cartemperature-root {
+  --window-width: 100vw;
+  --temp-color: rgba(255, 255, 255, 0.67);
+  --fan-value: 0.5;
+  --test: calc(var(--window-width) * 0.002);
+}
+
+.cartemperature-root h1,
+.cartemperature-root h3,
+.cartemperature-root p,
+.cartemperature-root a {
+  color: white;
+}
+
+.cartemperature-root h1,
+.cartemperature-root h3 {
+  font-family: "Bruno Ace", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.cartemperature-root h1 {
+  font-size: calc(var(--window-width) * 0.04);
+}
+.cartemperature-root h3 {
+  font-size: calc(var(--window-width) * 0.01);
+}
+
+.cartemperature-root a,
+.cartemperature-root p {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: calc(var(--window-width) * 0.01);
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
+.cartemperature-root .container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartemperature-root .content {
+  position: relative;
+  overflow: hidden;
+}
+
+.cartemperature-root .mask {
+  position: relative;
+  z-index: 99;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  filter: saturate(0) hue-rotate(130deg);
+}
+
+.cartemperature-root .interface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: calc(var(--window-width) * 0.05);
+  display: flex;
+  flex-flow: horizontal;
+  justify-content: stretch;
+}
+
+.cartemperature-root .border {
+  position: absolute;
+  z-index: 2;
+  inset: 20.5% 8.65% auto 8.75%;
+  pointer-events: none;
+  border: 0;
+}
+
+.cartemperature-root .border svg {
+  display: block;
+}
+
+.cartemperature-root .main-border {
+  position: relative;
+  opacity: calc(0.5 + var(--fan-value) / 2);
+  z-index: 1;
+}
+
+.cartemperature-root .temp-border,
+.cartemperature-root .fan-border {
+  position: absolute;
+  z-index: 1;
+  inset: -78.1% auto auto -6.1%;
+  height: 257.4%;
+  opacity: calc(0.5 + var(--fan-value) / 2);
+  transform-origin: center right;
+  transform: rotateZ(0deg);
+  aspect-ratio: 1 / 4;
+  overflow: hidden;
+}
+
+.cartemperature-root .fan-border {
+  inset: -77% -6% auto auto;
+  transform-origin: center left;
+  height: 255.4%;
+}
+
+.cartemperature-root .temp-border svg,
+.cartemperature-root .fan-border svg {
+  position: relative;
+  height: 50%;
+  top: 25%;
+  transform-origin: center right;
+  transform: rotateZ(0deg);
+  aspect-ratio: 1 / 2;
+}
+
+.cartemperature-root .fan-border svg {
+  transform-origin: center left;
+  transform: translateX(-100%) scaleX(-1);
+}
+
+.cartemperature-root .outside-blur {
+  opacity: 0;
+  filter: blur(clamp(0px, calc(var(--window-width) * 0.015), 25px));
+  transition: opacity 0.2s ease;
+}
+
+.cartemperature-root .container.temp-active .outside-blur,
+.cartemperature-root .container.fan-active .outside-blur {
+  opacity: 1;
+}
+
+.cartemperature-root .temp-marker,
+.cartemperature-root .fan-marker {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: calc(var(--window-width) * 0.001);
+  height: 30%;
+  background: var(--temp-color);
+  transition: width 0.2s ease;
+}
+
+.cartemperature-root .fan-marker {
+  right: auto;
+  left: 0;
+}
+
+.cartemperature-root .temp-bg,
+.cartemperature-root .fan-bg {
+  position: absolute !important;
+  /*   z-index: 3; */
+  mask: linear-gradient(65deg, black 0%, black 70%, transparent 87%);
+  opacity: 0.2;
+  transition: opacity 0.2s;
+}
+.cartemperature-root .fan-bg {
+  transform: scaleX(-1);
+}
+.cartemperature-root .temp-active .temp-bg,
+.cartemperature-root .fan-active .fan-bg {
+  opacity: 0.5;
+}
+.cartemperature-root .temp-bg circle,
+.cartemperature-root .fan-bg circle {
+  fill: var(--temp-color);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.cartemperature-root .container.temp-active .temp-marker,
+.cartemperature-root .container.fan-active .fan-marker {
+  width: calc(var(--window-width) * 0.004);
+}
+
+.cartemperature-root .temp-marker.blur,
+.cartemperature-root .fan-marker.blur {
+  width: calc(var(--window-width) * 0.003);
+  filter: blur(clamp(0px, calc(var(--window-width) * 0.015), 25px));
+}
+.cartemperature-root .container.temp-active .temp-marker.blur,
+.cartemperature-root .container.fan-active .fan-marker.blur {
+  width: calc(var(--window-width) * 0.01);
+}
+
+.cartemperature-root .settings {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 0%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: calc(var(--window-width) * 0.02);
+}
+
+.cartemperature-root .settings.left {
+  padding: 17.5% 2.5% 15% 19%;
+}
+
+.cartemperature-root .settings.right {
+  padding: 17.5% 19% 15% 2.5%;
+}
+
+.cartemperature-root .slider-wrapper {
+  display: flex;
+  flex-flow: column;
+  gap: calc(var(--window-width) * 0.014);
+  width: 70%;
+  overflow: hidden;
+  padding: calc(var(--window-width) * 0.01);
+}
+
+.cartemperature-root .temp-slider,
+.cartemperature-root .fan-slider {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  margin-bottom: calc(var(--window-width) * 0.0025);
+  border-radius: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartemperature-root .temp-slider {
+  background: linear-gradient(to right, #0052b1 0%, #6b6b6b 50%, #b23418 100%);
+}
+
+.cartemperature-root .slider-mask-wrapper {
+  height: 100%;
+  width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartemperature-root .slider-mask {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  transform: scaleX(1);
+  transition: 0.4s ease transform;
+}
+.cartemperature-root .container.temp-active .slider-mask {
+  transform: scaleX(4);
+}
+
+.cartemperature-root input[type="range"] {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cartemperature-root input[type="range"]:focus {
+  outline: none;
+}
+
+.cartemperature-root input[type="range"]::-webkit-slider-runnable-track {
+  background-color: transparent;
+  border-radius: 1000px;
+  height: 4px;
+  border: 1px solid rgba(40, 40, 40, 1);
+}
+
+.cartemperature-root input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 50%;
+}
+
+.cartemperature-root .temp::-webkit-slider-thumb {
+  margin-top: calc(var(--window-width) * -0.0032);
+  height: calc(var(--window-width) * 0.008);
+  width: calc(var(--window-width) * 0.008);
+  background-color: var(--temp-color);
+}
+
+.cartemperature-root .fan::-webkit-slider-thumb {
+  margin-top: calc(var(--window-width) * -0.0024);
+  height: calc(var(--window-width) * 0.006);
+  width: calc(var(--window-width) * 0.006);
+  background-color: #fff;
+  outline: calc(var(--window-width) * 0.002) solid
+    rgba(255, 255, 255, var(--fan-value));
+  outline-offset: var(--test);
+  transition: outline-offset 0.2s ease;
+  /*box-shadow: 0 0 0 calc(var(--window-width) * 0.002) rgba(255,255,255,var(--fan-value));*/
+}
+
+/*input[type="range"]:focus::-webkit-slider-thumb {
+background-color: #fff;
+}*/
+
+.cartemperature-root .car {
+  position: relative;
+  z-index: 3;
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.cartemperature-root .car-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cartemperature-root .car-gradient {
+  fill: var(--temp-color);
+  filter: blur(calc(var(--window-width) * 0.02));
+  opacity: var(--fan-value);
+  transition: filter 0.2s ease;
+  clip-path: url(#clip);
+}
+.cartemperature-root .container.temp-active .car-gradient {
+  filter: blur(calc(var(--window-width) * 0.03));
+}
+
+.cartemperature-root .car-bg > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 2;
+}
+
+.cartemperature-root .car > svg {
+  position: absolute;
+  width: 100%;
+  opacity: 0.75;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.cartemperature-root .container.temp-active .car svg._1 {
+  opacity: 1;
+}
+
+.cartemperature-root .car > svg.blur {
+  filter: blur(8px) saturate(1);
+  transition: filter 0.4s ease;
+}
+.cartemperature-root .container.temp-active .car > svg.blur {
+  filter: blur(12px) saturate(1.5);
+}
+
+.cartemperature-root .car > svg path {
+  stroke: var(--temp-color);
+  stroke-width: 1px;
+}
+
+.cartemperature-root .car > svg.blur path {
+  stroke-width: 2px;
+  transition: stroke-width 0.2s ease;
+}
+.cartemperature-root .container.temp-active .car > svg.blur path {
+  stroke-width: 6px;
+}
+
+.cartemperature-root .settings.data > div:nth-child(1),
+.cartemperature-root .settings.data > div:nth-child(2) {
+  place-self: center;
+}
+
+.cartemperature-root .settings.data > div:nth-child(3) {
+  place-self: center stretch;
+  grid-area: span 1 / span 2 / span 1 / span 2;
+}
+
+.cartemperature-root .temp-number,
+.cartemperature-root .fan-setting {
+  position: relative;
+  z-index: 1;
+  min-width: calc(var(--window-width) * 0.07);
+  max-width: calc(var(--window-width) * 0.07);
+  display: flex;
+  justify-content: start;
+}
+
+.cartemperature-root .fan-setting {
+  justify-content: end;
+}
+
+.cartemperature-root .temp-number h3:nth-child(2) {
+  margin-bottom: calc(var(--window-width) * 0.0075);
+}
+
+.cartemperature-root .temp-number h3:nth-child(3) {
+  opacity: 0.4;
+  margin: 0 0 calc(var(--window-width) * 0.028)
+    calc(var(--window-width) * -0.0025);
+}
+
+.cartemperature-root .temp-wrapper,
+.cartemperature-root .fan-wrapper {
+  position: relative;
+  margin: -2% -10% -2% -10%;
+  padding: 2% 10% 2% 10%;
+  min-width: calc(var(--window-width) * 0.1);
+  display: flex;
+  align-items: end;
+  -webkit-align-items: flex-end;
+  justify-content: center;
+  transition: 0.2s box-shadow;
+}
+.cartemperature-root .temp-wrapper::before,
+.cartemperature-root .fan-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  filter: blur(calc(var(--window-width) * 0.02));
+}
+.cartemperature-root .container.temp-active .temp-wrapper::before,
+.cartemperature-root .container.fan-active .fan-wrapper::before {
+  background: #111;
+}
+.cartemperature-root .temp-wrapper *,
+.cartemperature-root .fan-wrapper * {
+  position: relative;
+}
+
+.cartemperature-root .fan-setting svg {
+  position: absolute;
+  top: 0;
+  height: calc(var(--window-width) * 0.02);
+  margin-bottom: calc(var(--window-width) * 0.0075);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cartemperature-root .nav {
+  position: absolute;
+  z-index: 2;
+  bottom: 25.2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: calc(var(--window-width) * 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--window-width) * 0.04);
+  padding: 0 calc(var(--window-width) * 0.03) calc(var(--window-width) * 0.004)
+    calc(var(--window-width) * 0.03);
+  border-radius: calc(var(--window-width) * 0.04)
+    calc(var(--window-width) * 0.04) 0 0;
+  /*   background: linear-gradient(
+    to bottom,
+    rgba(25, 25, 25, 1) 0%,
+    rgba(12, 12, 12, 0) 100%
+  ); */
+  perspective: 2000px;
+}

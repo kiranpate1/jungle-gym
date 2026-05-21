@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import "../flights/style.css";
+import "./style.css";
 
 export default function FlightsComponent() {
   const rootRef = useRef<HTMLDivElement | null>(null);

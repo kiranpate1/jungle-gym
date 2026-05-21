@@ -27,8 +27,8 @@ export default function Home({
       return item.categories;
     }
 
-    if ("cetegories" in item && Array.isArray(item.cetegories)) {
-      return item.cetegories;
+    if ("categories" in item && Array.isArray(item.categories)) {
+      return item.categories;
     }
 
     return [] as string[];
@@ -134,10 +134,7 @@ export default function Home({
 
               return (
                 <div
-                  className={cn(
-                    "group relative bg-white/0.5 hover:bg-white/1 shadow-[inset_0_0_0_2px_rgba(255,255,255,0.025)] aspect-4/3 rounded-3xl squircle overflow-hidden transition-all duration-200",
-                    isReleasing && "bg-white/1",
-                  )}
+                  className="group relative shadow-[inset_0_0_0_2px_rgba(255,255,255,0.025)] aspect-4/3 rounded-3xl squircle overflow-hidden transition-all duration-200"
                   key={item.name}
                 >
                   {item.asset && (
@@ -169,7 +166,7 @@ export default function Home({
                     </>
                   )}
                   {item.isNew && (
-                    <div className="absolute top-4 left-4 px-2.25 pt-0.5 pb-1.25 bg-[#0e0e0e] rounded-2xl squircle">
+                    <div className="absolute top-4 left-4 px-2.25 py-2.75 bg-[#0e0e0e] rounded-2xl squircle">
                       <small className="opacity-35">New</small>
                     </div>
                   )}
