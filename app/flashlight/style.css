@@ -1,0 +1,178 @@
+.flashlight-root {
+  background: #383838;
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" stroke="%23ffffff" fill="%23ffffff" width="10px" height="10px" viewBox="0 0 10.04 10.04"><circle cx="5.02" cy="5.02" r="4.52"/></svg>')
+      5 5,
+    auto;
+}
+
+.flashlight-root {
+  --press-desktop: 0.3s ease;
+  --press-mobile: 0.2s ease;
+  --gap: 4px;
+  --light: #00ff88;
+}
+
+.flashlight-root main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.flashlight-root .nav {
+  display: flex;
+  gap: var(--gap);
+  padding: var(--gap);
+  border-radius: 1000px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    2.6px 2.6px 1.5px rgba(0, 0, 0, 0.027),
+    5.8px 5.8px 3.4px rgba(0, 0, 0, 0.04),
+    9.8px 9.8px 5.6px rgba(0, 0, 0, 0.05),
+    14.8px 14.8px 8.5px rgba(0, 0, 0, 0.058),
+    21.3px 21.3px 12.3px rgba(0, 0, 0, 0.065),
+    30.1px 30.1px 17.4px rgba(0, 0, 0, 0.072),
+    42.7px 42.7px 24.6px rgba(0, 0, 0, 0.08),
+    62.1px 62.1px 35.8px rgba(0, 0, 0, 0.09),
+    95.6px 95.6px 55.1px rgba(0, 0, 0, 0.103),
+    170px 170px 98px rgba(0, 0, 0, 0.13);
+}
+
+.flashlight-root .button {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  transform: translateZ(0);
+  background: #242424;
+  overflow: hidden;
+}
+
+.flashlight-root .button-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.2s filter;
+}
+
+.flashlight-root .frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background: rgba(50, 50, 50, 0.5);
+  backdrop-filter: blur(5px);
+  box-shadow:
+    0 0 0 0 white,
+    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
+    inset 0 0 16px rgba(160, 160, 160, 0.1),
+    inset 0 0 0 0 rgba(0, 0, 0, 0.8);
+  filter: brightness(1);
+  transform: translate3d(0, 0, 0);
+  transition: 0.2s;
+}
+
+.flashlight-root .button.hover .frame {
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.5),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
+    inset 0 0 16px rgba(160, 160, 160, 0.1),
+    inset 0 0 0 0 rgba(0, 0, 0, 1);
+  transition: var(--press-desktop);
+}
+
+.flashlight-root .button.press .frame {
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.5),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
+    inset 0 0 16px rgba(160, 160, 160, 0.1),
+    inset 4px 4px 4px 2px rgba(0, 0, 0, 1);
+  filter: brightness(0.8);
+}
+
+.flashlight-root svg {
+  width: 24px;
+  transform: scale(1);
+  transition: var(--press-desktop);
+}
+
+.flashlight-root .button.press svg {
+  transform: scale(0.91);
+}
+
+.flashlight-root svg path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flashlight-root .frame svg path {
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 1.5px;
+}
+
+.flashlight-root .light {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0.15) 100px,
+    rgba(0, 0, 0, 1) 400px
+  );
+  pointer-events: none;
+}
+
+.flashlight-root .button-light {
+  position: absolute;
+  display: flex;
+  gap: calc(var(--gap) + 4px);
+  filter: blur(0.5px);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+}
+
+.flashlight-root .button-light div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  /*   box-shadow: inset 0 0 0 1.5px var(--light); */
+}
+
+.flashlight-root .button-light svg path {
+  stroke: var(--light);
+  stroke-width: 1.5px;
+}
+
+@media screen and (max-width: 500px) {
+  .flashlight-root .frame {
+    transition: var(--press-mobile);
+  }
+
+  .flashlight-root svg {
+    transition: var(--press-mobile);
+  }
+}

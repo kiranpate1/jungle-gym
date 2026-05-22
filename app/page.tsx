@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { items } from "./items";
@@ -8,8 +8,180 @@ import Tag from "./components/Tag";
 
 export const pendingCardReleaseKey = "jungle-gym:pending-card-release";
 
+const revealedPreviewAssets = new Set<string>();
+const loadedPreviewAssets = new Set<string>();
+
 function cn(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
+}
+
+function PreviewMedia({
+  item,
+  isReleasing,
+}: {
+  item: (typeof items)[number];
+  isReleasing: boolean;
+}) {
+  const previewKey = item.preview ?? item.path ?? item.name;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isVisible, setIsVisible] = useState(() =>
+    revealedPreviewAssets.has(previewKey),
+  );
+  const [isImageLoaded, setIsImageLoaded] = useState(() =>
+    loadedPreviewAssets.has(previewKey),
+  );
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  const markImageLoaded = () => {
+    loadedPreviewAssets.add(previewKey);
+    setIsImageLoaded(true);
+  };
+
+  const markVideoReady = () => {
+    setIsVideoReady(true);
+  };
+
+  useEffect(() => {
+    if (item.type !== "Video") {
+      return;
+    }
+
+    const previewNode = containerRef.current;
+    const cardNode = previewNode?.parentElement;
+
+    if (!cardNode) {
+      return;
+    }
+
+    const handleMouseEnter = () => {
+      const video = videoRef.current;
+
+      if (!video) {
+        return;
+      }
+
+      void video.play().catch(() => {
+        // Ignore transient autoplay/playback interruptions.
+      });
+    };
+
+    const handleMouseLeave = () => {
+      const video = videoRef.current;
+
+      if (!video) {
+        return;
+      }
+
+      video.pause();
+      if (video.readyState > 0) {
+        setTimeout(() => {
+          video.currentTime = 0;
+        }, 200);
+      }
+    };
+
+    cardNode.addEventListener("mouseenter", handleMouseEnter);
+    cardNode.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      cardNode.removeEventListener("mouseenter", handleMouseEnter);
+      cardNode.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [item.type]);
+
+  useEffect(() => {
+    if (isVisible) {
+      return;
+    }
+
+    const node = containerRef.current;
+
+    if (!node) {
+      return;
+    }
+
+    if (typeof window === "undefined" || !window.IntersectionObserver) {
+      revealedPreviewAssets.add(previewKey);
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            revealedPreviewAssets.add(previewKey);
+            setIsVisible(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      {
+        rootMargin: "200px 0px",
+        threshold: 0.01,
+      },
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isVisible, previewKey]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn(
+        "absolute inset-0 -z-1 scale-100 group-hover:scale-105 transition-transform duration-300 ease-out translate-z-0",
+        isReleasing && "scale-105",
+      )}
+      style={{
+        backgroundColor: item.color ?? "transparent",
+      }}
+    >
+      {isVisible ? (
+        <>
+          <Image
+            src={item.preview}
+            alt={item.name}
+            width={500}
+            height={500}
+            loading="lazy"
+            className={cn(
+              "absolute inset-0 w-full h-full transition-opacity duration-500",
+              isImageLoaded ? "opacity-100" : "opacity-0",
+            )}
+            style={{
+              objectFit:
+                item.type === "Video" || item.name === "Dynamic Contents"
+                  ? "contain"
+                  : "cover",
+            }}
+            onLoad={markImageLoaded}
+          />
+          {item.type === "Video" ? (
+            <video
+              ref={videoRef}
+              src={item.video}
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className={cn(
+                "absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+                isVideoReady ? "block" : "hidden",
+              )}
+              onLoadedMetadata={markVideoReady}
+              onLoadedData={markVideoReady}
+            />
+          ) : null}
+        </>
+      ) : null}
+    </div>
+  );
 }
 
 export default function Home({
@@ -83,7 +255,7 @@ export default function Home({
   }, [initialReleasePath]);
 
   return (
-    <main className="">
+    <main>
       <section className="flex flex-col items-center">
         <div className="w-full max-w-[1000px] flex flex-col items-stretch gap-12 px-4 py-8">
           <h1>Jungle Gym</h1>
@@ -137,37 +309,12 @@ export default function Home({
                   className="group relative shadow-[inset_0_0_0_2px_rgba(255,255,255,0.025)] aspect-4/3 rounded-3xl squircle overflow-hidden transition-all duration-200"
                   key={item.name}
                 >
-                  {item.asset && (
-                    <>
-                      <div
-                        className={cn(
-                          "absolute inset-0 -z-1 scale-100 group-hover:scale-105 transition-transform duration-300 ease-out",
-                          isReleasing && "scale-105",
-                        )}
-                      >
-                        {item.type === "Video" ? (
-                          <video
-                            src={item.asset}
-                            autoPlay
-                            loop
-                            muted
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <Image
-                            src={item.asset}
-                            alt={item.name}
-                            width={500}
-                            height={500}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </div>
-                    </>
+                  {item.preview && (
+                    <PreviewMedia item={item} isReleasing={isReleasing} />
                   )}
                   {item.isNew && (
-                    <div className="absolute top-4 left-4 px-2.25 py-2.75 bg-[#0e0e0e] rounded-2xl squircle">
-                      <small className="opacity-35">New</small>
+                    <div className="absolute top-4 right-4 px-2.25 py-2.75 bg-[rgba(62,62,62,0.6)] rounded-2xl squircle">
+                      <small className="text-white/80">New</small>
                     </div>
                   )}
                   <div

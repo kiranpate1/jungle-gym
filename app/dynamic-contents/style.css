@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+.dynamic-contents-root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --red: #fb3417;
+  --yellow: #f4bb43;
+  --peach: #ecd8cf;
+  --blue: #0196cd;
+  --brown: #4a2414;
+  --smoke: #0d0d0d;
+  --amber: #ffd9b4;
+  --pale-gray: #f2f0f2;
+}
+
+.dynamic-contents-root {
+  background: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dynamic-contents-root *::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.dynamic-contents-root * {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.dynamic-contents-root h1,
+.dynamic-contents-root h2,
+.dynamic-contents-root p {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+}
+
+.dynamic-contents-root .title-l {
+  font-size: 64px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.dynamic-contents-root .title {
+  font-size: 48px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-weight: 500;
+}
+.dynamic-contents-root .content .title {
+  color: #161a27;
+}
+
+.dynamic-contents-root .subtitle {
+  font-size: 24px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+.dynamic-contents-root .content .subtitle {
+  color: #161a27;
+}
+
+.dynamic-contents-root p,
+.dynamic-contents-root li {
+  font-size: 16px;
+  text-wrap: pretty;
+}
+.dynamic-contents-root .content p,
+.dynamic-contents-root .content li {
+  color: #42434a;
+}
+
+.dynamic-contents-root nav p,
+.dynamic-contents-root a {
+  font-size: 14px;
+}
+.dynamic-contents-root nav li,
+.dynamic-contents-root nav li::before {
+  font-size: 14px !important;
+  top: -1.5px !important;
+}
+
+.dynamic-contents-root a {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.dynamic-contents-root a:hover {
+  opacity: 1;
+}
+
+.dynamic-contents-root ul {
+  padding-left: 16px;
+  list-style-type: disc;
+}
+
+.dynamic-contents-root ol {
+  padding-left: 32px;
+  list-style-type: none;
+  counter-reset: item;
+}
+.dynamic-contents-root ol li {
+  position: relative;
+  padding-bottom: 12px;
+  counter-increment: item;
+}
+.dynamic-contents-root ol li::before {
+  content: counter(item);
+  position: absolute;
+  z-index: 1;
+  left: -32px;
+  top: 1.5px;
+  width: 24px;
+  height: 24px;
+  background-color: #f7f7f7;
+  border-radius: 50px;
+  corner-shape: squircle;
+  color: #545454;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.dynamic-contents-root li {
+  margin-bottom: 8px;
+}
+
+.dynamic-contents-root small {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.dynamic-contents-root .content > div {
+  gap: 48px;
+}
+
+.dynamic-contents-root .content > div > div {
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.dynamic-contents-root .content > div div:nth-child(2) {
+  margin-top: 0px !important;
+}
+
+.dynamic-contents-root .content .citation-highlight {
+  background-color: transparent;
+  border-radius: 4px;
+  transition: 0.2s background-color ease-in-out;
+}
+
+.dynamic-contents-root .content .asset {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 12;
+  background-color: #fdfdfd;
+  border: 2px solid #ededf1;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.dynamic-contents-root .content .phone {
+  position: absolute;
+  inset: 50% 0 0 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  max-height: 90%;
+  aspect-ratio: 420 / 912;
+  /* border: 2px solid #ededf1; */
+  /* border-radius: 40px;
+  corner-shape: squircle; */
+}
+
+.dynamic-contents-root .content .testimonials > div {
+  corner-shape: squircle;
+}
+
+.dynamic-contents-root .squircle {
+  corner-shape: squircle;
+}
