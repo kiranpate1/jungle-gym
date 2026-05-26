@@ -1,0 +1,451 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+.lightdark-root {
+  scroll-behavior: smooth;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+.lightdark-root {
+  margin: 0;
+  padding: 0;
+}
+
+.lightdark-root * {
+  text-rendering: geometricPrecision;
+  margin: 0;
+  padding: 0;
+}
+.lightdark-root *::selection {
+  background: #fff;
+  color: #000;
+}
+.lightdark-root {
+  --window-width: 100vw;
+  --window-height: 100vh;
+  --h1-width: calc(var(--window-width) * 0.316);
+}
+
+.lightdark-root h1,
+.lightdark-root a,
+.lightdark-root button {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.lightdark-root .top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: var(--window-height);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightdark-root .top img {
+  position: absolute;
+  width: calc(var(--window-height) * 0.24);
+  transform: translateY(20%);
+}
+
+.lightdark-root .switch {
+  position: absolute;
+  z-index: 1;
+  bottom: 32px;
+  background: #78788032;
+  height: 31px;
+  width: 51px;
+  padding: 2px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: background 0.6s ease;
+}
+
+.lightdark-root .knob {
+  width: 27px;
+  height: 27px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateX(2px);
+  box-shadow:
+    0 3px 1px 0 rgba(0, 0, 0, 0.06),
+    0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  transition: 0.4s ease;
+}
+
+.lightdark-root .content {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(var(--window-height) * 1);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.lightdark-root .background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  background:
+    radial-gradient(
+      73% 101% at 95.54% 95.05%,
+      rgba(0, 99, 190, 0.78) 0%,
+      rgba(0, 87, 167, 0) 100%
+    ),
+    linear-gradient(197deg, rgba(0, 7, 91, 1) 0%, rgba(0, 7, 91, 0) 100%),
+    radial-gradient(
+      59% 74% at 10% -10%,
+      rgba(206, 123, 0, 0.8) 0%,
+      rgba(199, 180, 9, 0.21) 52%,
+      rgba(193, 9, 9, 0) 100%
+    ),
+    linear-gradient(
+      143deg,
+      rgba(193, 97, 9, 1) 0%,
+      rgba(17, 212, 72, 0.33) 30%,
+      rgba(9, 193, 149, 0) 56%
+    ),
+    linear-gradient(288deg, rgba(38, 100, 0, 1) 33%, rgba(38, 85, 34, 0) 97%);
+  border-radius: 32px;
+  width: calc(var(--window-width) - 32px);
+  height: calc(var(--window-height) - 32px);
+  mix-blend-mode: difference;
+}
+
+.lightdark-root .notch {
+  display: flex;
+  justify-content: stretch;
+  height: 40px;
+  z-index: 1;
+}
+
+.lightdark-root .notch svg {
+  height: 100%;
+}
+
+.lightdark-root .links {
+  display: flex;
+  align-items: start;
+  padding-top: 3px;
+  gap: 16px;
+  background: #000;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.lightdark-root .stars {
+  position: absolute;
+  opacity: 0;
+  width: 95%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightdark-root .heading {
+  position: absolute;
+  top: 0;
+  padding: calc(var(--window-height) * 0.1) 0 0 0;
+  height: calc(var(--window-width) * 0.173);
+  display: flex;
+  gap: calc(var(--window-width) * 0.016);
+}
+
+.lightdark-root .heading h1 {
+  font-weight: 400;
+  font-size: calc(var(--window-width) * 0.09);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.lightdark-root .toggle-text {
+  overflow: hidden;
+}
+.lightdark-root .toggle-text h1 {
+  transform: translateY(0%);
+  width: var(--h1-width);
+}
+
+.lightdark-root .screen {
+  position: absolute;
+  width: calc(var(--window-height) * 0.22);
+  border-radius: calc(var(--window-height) * 0.022);
+  transform: translateY(21%);
+  z-index: 1;
+}
+
+.lightdark-root .section-1,
+.lightdark-root .section-2 {
+  position: relative;
+  width: 100%;
+  height: calc(var(--window-height) * 1.5);
+}
+
+.lightdark-root .section-1 {
+  background: #fff;
+  display: flex;
+  align-items: start;
+}
+
+.lightdark-root .transition {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 0;
+}
+
+.lightdark-root .section-2 {
+  background: #000;
+  display: flex;
+  align-items: end;
+}
+
+.lightdark-root #s1-target,
+.lightdark-root #s2-target {
+  width: 100%;
+  height: var(--window-height);
+}
+
+/* gradient blur stuffs */
+
+.lightdark-root .transition > div {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  inset: auto 0 0 0;
+  pointer-events: none;
+}
+/* @media screen and (max-height: 800px) {
+  .transition > div {
+    min-height: 200px;
+  }
+} */
+.lightdark-root .transition > div > div,
+.lightdark-root .transition > div::before,
+.lightdark-root .transition > div::after {
+  position: absolute;
+  inset: 0;
+}
+
+.lightdark-root .transition > div::before {
+  content: "";
+  z-index: 1;
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+}
+.lightdark-root .transition > div > div:nth-of-type(1) {
+  z-index: 2;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+.lightdark-root .transition > div > div:nth-of-type(2) {
+  z-index: 3;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.lightdark-root .transition > div > div:nth-of-type(3) {
+  z-index: 4;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+.lightdark-root .transition > div > div:nth-of-type(4) {
+  z-index: 5;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.lightdark-root .transition > div > div:nth-of-type(5) {
+  z-index: 6;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+}
+.lightdark-root .transition > div > div:nth-of-type(6) {
+  z-index: 7;
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
+}
+.lightdark-root .transition > div::after {
+  content: "";
+  z-index: 8;
+  backdrop-filter: blur(128px);
+  -webkit-backdrop-filter: blur(128px);
+}
+
+.lightdark-root .blur-top::before {
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%);
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 12.5%
+  );
+}
+.lightdark-root .blur-top > div:nth-of-type(1) {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 12.5%,
+    rgba(0, 0, 0, 1) 25%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 12.5%,
+    rgba(0, 0, 0, 1) 25%
+  );
+}
+.lightdark-root .blur-top > div:nth-of-type(2) {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 1) 37.5%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 1) 37.5%
+  );
+}
+.lightdark-root .blur-top > div:nth-of-type(3) {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 37.5%,
+    rgba(0, 0, 0, 1) 50%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 37.5%,
+    rgba(0, 0, 0, 1) 50%
+  );
+}
+.lightdark-root .blur-top > div:nth-of-type(4) {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 1) 62.5%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 1) 62.5%
+  );
+}
+.lightdark-root .blur-top > div:nth-of-type(5) {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 62.5%,
+    rgba(0, 0, 0, 1) 75%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 62.5%,
+    rgba(0, 0, 0, 1) 75%
+  );
+}
+.lightdark-root .blur-top > div:nth-of-type(6) {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(0, 0, 0, 1) 87.5%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(0, 0, 0, 1) 87.5%
+  );
+}
+.lightdark-root .blur-top::after {
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 87.5%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 87.5%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.lightdark-root .blur-bot::before {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 12.5%
+  );
+}
+.lightdark-root .blur-bot > div:nth-of-type(1) {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 12.5%,
+    rgba(0, 0, 0, 1) 25%
+  );
+}
+.lightdark-root .blur-bot > div:nth-of-type(2) {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 1) 37.5%
+  );
+}
+.lightdark-root .blur-bot > div:nth-of-type(3) {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 37.5%,
+    rgba(0, 0, 0, 1) 50%
+  );
+}
+.lightdark-root .blur-bot > div:nth-of-type(4) {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 1) 62.5%
+  );
+}
+.lightdark-root .blur-bot > div:nth-of-type(5) {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 62.5%,
+    rgba(0, 0, 0, 1) 75%
+  );
+}
+.lightdark-root .blur-bot > div:nth-of-type(6) {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(0, 0, 0, 1) 87.5%
+  );
+}
+.lightdark-root .blur-bot::after {
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 87.5%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}

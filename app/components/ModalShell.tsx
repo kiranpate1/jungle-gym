@@ -42,6 +42,8 @@ export default function ModalShell({
   };
 
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [alignControlsRight, setAlignControlsRight] = useState(false);
+  const WINDOW_TRANSITION_MS = 350;
 
   const toggleScreenSize = () => {
     const windowEl = windowRef.current;
@@ -69,6 +71,16 @@ export default function ModalShell({
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setAlignControlsRight(isFullscreen);
+    }, WINDOW_TRANSITION_MS);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [isFullscreen]);
 
   return (
     <div
@@ -126,7 +138,7 @@ export default function ModalShell({
           style={{
             top: isFullscreen ? 8 : 0,
             left: isFullscreen ? "calc(100% - 40px)" : "calc(100% + 8px)",
-            alignItems: isFullscreen ? "flex-end" : "flex-start",
+            alignItems: alignControlsRight ? "flex-end" : "flex-start",
             transition: "top 0.35s ease, left 0.35s ease",
           }}
         >

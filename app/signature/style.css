@@ -1,0 +1,511 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+.signature-root {
+  background: url("https://img.freepik.com/premium-photo/abstract-blurred-sky-colorful_40299-22.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.signature-root .modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 36px;
+  width: 444px;
+  height: 96px;
+  padding: 24px;
+  border-radius: 40px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0);
+  transition:
+    0.4s ease height,
+    0.4s ease padding,
+    0.2s border-radius,
+    0.6s ease box-shadow;
+}
+.signature-root .modal:hover {
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.025);
+}
+
+.signature-root .modal.active {
+  height: 224px;
+  padding: 32px;
+  border-radius: 48px;
+}
+
+.signature-root .field-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.signature-root .field {
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  /*   font-variation-settings: "wdth" 100; */
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0 12px 2px 12px;
+  background: none;
+  color: #000;
+  outline: none;
+  transition: border 0.2s;
+}
+.signature-root .active .field {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.signature-root .field::placeholder {
+  opacity: 0.5;
+  color: #000;
+}
+
+.signature-root .sign,
+.signature-root .signed-by {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.signature-root .active .signed-by {
+  opacity: 1;
+}
+
+.signature-root .sign {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  height: 44px;
+  border-radius: 12px;
+  padding: 0 14px 2px 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  opacity: 0.2;
+  transition: 0.2s;
+}
+.signature-root .active .sign {
+  opacity: 1;
+}
+
+.signature-root .signature {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.signature-root .letter-bank {
+  display: none;
+}
+
+.signature-root .signed-by {
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  padding-bottom: 2px;
+  transition: 0.2s ease;
+}
+
+.signature-root .signature-main {
+  display: flex;
+  min-height: 51px;
+  flex-flow: wrap;
+  justify-content: start;
+}
+
+.signature-root .signature-main svg path {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 1;
+  stroke: #000;
+  transition: 0.2s stroke-dashoffset;
+}
+
+.signature-root .up,
+.signature-root .lo {
+  max-height: 51px;
+}
+
+/* letter boxes */
+.signature-root .up.a {
+  margin: 0 -10px 0 -7px;
+}
+.signature-root .up.b {
+  margin: 0 -5px 0 -13px;
+}
+.signature-root .up.c {
+  margin: 0 -5px 0 -6px;
+}
+.signature-root .up.d {
+  margin: 0 -6px 0 -6px;
+}
+.signature-root .up.e {
+  margin: 0 -10px 0 -8px;
+}
+.signature-root .up.f {
+  margin: 0 -13px 0 -5px;
+}
+.signature-root .up.g {
+  margin: 0 0px 0 -6px;
+}
+.signature-root .up.h {
+  margin: 0 -8px 0 -6px;
+}
+.signature-root .up.i {
+  margin: 0 -25px 0 -16px;
+}
+.signature-root .up.j {
+  margin: 0 -24px 0 -6px;
+}
+.signature-root .up.k {
+  margin: 0 -23px 0 -3px;
+}
+.signature-root .up.l {
+  margin: 0 -7px 0 -5px;
+}
+.signature-root .up.m {
+  margin: 0 -7px 0 -10px;
+}
+.signature-root .up.n {
+  margin: 0 -4px 0 -10px;
+}
+.signature-root .up.o {
+  margin: 0 -1px 0 -1px;
+}
+.signature-root .up.p {
+  margin: 0 -12px 0 -3px;
+}
+.signature-root .up.q {
+  margin: 0 -3px 0 -3px;
+}
+.signature-root .up.r {
+  margin: 0 -8px 0 -4px;
+}
+.signature-root .up.s {
+  margin: 0 -14px 0 -2px;
+}
+.signature-root .up.t {
+  margin: 0 -29px 0 -17px;
+}
+.signature-root .up.u {
+  margin: 0 -10px 0 -1px;
+}
+.signature-root .up.v {
+  margin: 0 -15px 0 -6px;
+}
+.signature-root .up.w {
+  margin: 0 -8px 0 -6px;
+}
+.signature-root .up.x {
+  margin: 0 -11px 0 -13px;
+}
+.signature-root .up.y {
+  margin: 0 -12px 0 2px;
+}
+.signature-root .up.z {
+  margin: 0 -9px 0 -8px;
+}
+.signature-root .lo.a {
+  margin: 0 -4px 0 0;
+}
+.signature-root .lo.b {
+  margin: 0 -6px 0 -1.5px;
+}
+.signature-root .lo.c {
+  margin: 0 -4px 0 0;
+}
+.signature-root .lo.d {
+  margin: 0 -11.3px 0 0;
+}
+.signature-root .lo.e {
+  margin: 0 -4px 0 0;
+}
+.signature-root .lo.f {
+  margin: 0 -6px 0 -6px;
+}
+.signature-root .lo.g {
+  margin: 0 -4px 0 -10px;
+}
+.signature-root .lo.h {
+  margin: 0 -4px 0 -1px;
+}
+.signature-root .lo.i {
+  margin: 0 -3.5px 0 0;
+}
+.signature-root .lo.j {
+  margin: 0 -5px 0 -14px;
+}
+.signature-root .lo.k {
+  margin: 0 -6.5px 0 0;
+}
+.signature-root .lo.l {
+  margin: 0 -12px 0 -4px;
+}
+.signature-root .lo.m,
+.signature-root .lo.n {
+  margin: 0 -5px 0 0;
+}
+.signature-root .lo.o {
+  margin: 0 -2.5px 0 0;
+}
+.signature-root .lo.p {
+  margin: 0 -2.5px 0 -10px;
+}
+.signature-root .lo.q {
+  margin: 0 -2px 0 -6px;
+}
+.signature-root .lo.r {
+  margin: 0 -3px 0 -1px;
+}
+.signature-root .lo.s {
+  margin: 0 -4px 0 -4px;
+}
+.signature-root .lo.t {
+  margin: 0 -12.5px 0 -3.5px;
+}
+.signature-root .lo.u,
+.signature-root .lo.v {
+  margin: 0 -4.5px 0 0;
+}
+.signature-root .lo.w,
+.signature-root .lo.x {
+  margin: 0 -4px 0 0;
+}
+.signature-root .lo.y {
+  margin: 0 -4px 0 -9px;
+}
+.signature-root .lo.z {
+  margin: 0 -4px 0 -10px;
+}
+
+/* letter paths */
+.signature-root .up.a path {
+  stroke-dasharray: 190;
+  stroke-dashoffset: 190;
+}
+.signature-root .up.b path {
+  stroke-dasharray: 230;
+  stroke-dashoffset: 230;
+}
+.signature-root .up.c path {
+  stroke-dasharray: 101;
+  stroke-dashoffset: 101;
+}
+.signature-root .up.d path {
+  stroke-dasharray: 194;
+  stroke-dashoffset: 194;
+}
+.signature-root .up.e path {
+  stroke-dasharray: 132;
+  stroke-dashoffset: 132;
+}
+.signature-root .up.f path {
+  stroke-dasharray: 191;
+  stroke-dashoffset: 191;
+}
+.signature-root .up.g path {
+  stroke-dasharray: 145;
+  stroke-dashoffset: 145;
+}
+.signature-root .up.h path {
+  stroke-dasharray: 235;
+  stroke-dashoffset: 235;
+}
+.signature-root .up.i path {
+  stroke-dasharray: 128;
+  stroke-dashoffset: 128;
+}
+.signature-root .up.j path {
+  stroke-dasharray: 174;
+  stroke-dashoffset: 174;
+}
+.signature-root .up.k path {
+  stroke-dasharray: 244;
+  stroke-dashoffset: 244;
+}
+.signature-root .up.l path {
+  stroke-dasharray: 83;
+  stroke-dashoffset: 83;
+}
+.signature-root .up.m path {
+  stroke-dasharray: 176;
+  stroke-dashoffset: 176;
+}
+.signature-root .up.n path {
+  stroke-dasharray: 111;
+  stroke-dashoffset: 111;
+}
+.signature-root .up.o path {
+  stroke-dasharray: 167;
+  stroke-dashoffset: 167;
+}
+.signature-root .up.p path {
+  stroke-dasharray: 203;
+  stroke-dashoffset: 203;
+}
+.signature-root .up.q path {
+  stroke-dasharray: 212;
+  stroke-dashoffset: 212;
+}
+.signature-root .up.r path {
+  stroke-dasharray: 235;
+  stroke-dashoffset: 235;
+}
+.signature-root .up.s path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.signature-root .up.t path {
+  stroke-dasharray: 133;
+  stroke-dashoffset: 133;
+}
+.signature-root .up.u path {
+  stroke-dasharray: 136;
+  stroke-dashoffset: 136;
+}
+.signature-root .up.v path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.signature-root .up.w path {
+  stroke-dasharray: 163;
+  stroke-dashoffset: 163;
+}
+.signature-root .up.x path {
+  stroke-dasharray: 153;
+  stroke-dashoffset: 153;
+}
+.signature-root .up.y path {
+  stroke-dasharray: 162;
+  stroke-dashoffset: 162;
+}
+.signature-root .up.z path {
+  stroke-dasharray: 149;
+  stroke-dashoffset: 149;
+}
+
+.signature-root .lo.a path {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+}
+.signature-root .lo.b path {
+  stroke-dasharray: 64;
+  stroke-dashoffset: 64;
+}
+.signature-root .lo.c path {
+  stroke-dasharray: 17;
+  stroke-dashoffset: 17;
+}
+.signature-root .lo.d path {
+  stroke-dasharray: 73;
+  stroke-dashoffset: 73;
+}
+.signature-root .lo.e path {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+}
+.signature-root .lo.f path {
+  stroke-dasharray: 59;
+  stroke-dashoffset: 59;
+}
+.signature-root .lo.g path {
+  stroke-dasharray: 75;
+  stroke-dashoffset: 75;
+}
+.signature-root .lo.h path {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+}
+.signature-root .lo.i path {
+  stroke-dasharray: 16;
+  stroke-dashoffset: 16;
+}
+.signature-root .lo.j path {
+  stroke-dasharray: 59;
+  stroke-dashoffset: 59;
+}
+.signature-root .lo.k path {
+  stroke-dasharray: 54;
+  stroke-dashoffset: 54;
+}
+.signature-root .lo.l path {
+  stroke-dasharray: 33;
+  stroke-dashoffset: 33;
+}
+.signature-root .lo.m path {
+  stroke-dasharray: 43;
+  stroke-dashoffset: 43;
+}
+.signature-root .lo.n path {
+  stroke-dasharray: 27;
+  stroke-dashoffset: 27;
+}
+.signature-root .lo.o path {
+  stroke-dasharray: 17;
+  stroke-dashoffset: 17;
+}
+.signature-root .lo.p path {
+  stroke-dasharray: 67;
+  stroke-dashoffset: 67;
+}
+.signature-root .lo.q path {
+  stroke-dasharray: 63;
+  stroke-dashoffset: 63;
+}
+.signature-root .lo.r path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+}
+.signature-root .lo.s path {
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+}
+.signature-root .lo.t path {
+  stroke-dasharray: 91;
+  stroke-dashoffset: 91;
+}
+.signature-root .lo.u path {
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+}
+.signature-root .lo.v path {
+  stroke-dasharray: 17;
+  stroke-dashoffset: 17;
+}
+.signature-root .lo.w path {
+  stroke-dasharray: 21;
+  stroke-dashoffset: 21;
+}
+.signature-root .lo.x path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+}
+.signature-root .lo.y path {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+}
+.signature-root .lo.z path {
+  stroke-dasharray: 67;
+  stroke-dashoffset: 67;
+}

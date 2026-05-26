@@ -156,7 +156,13 @@ function PreviewMedia({
             )}
             style={{
               objectFit:
-                item.type === "Video" || item.name === "Dynamic Contents"
+                item.type === "Video" ||
+                item.name === "Dynamic Contents" ||
+                item.name === "Album surfer" ||
+                item.name === "Stack / Grid toggle" ||
+                item.name === "Light/Dark Scroll" ||
+                item.name === "Temperature control" ||
+                item.name === "Sound control"
                   ? "contain"
                   : "cover",
             }}
@@ -298,7 +304,7 @@ export default function Home({
               placeholder="Search..."
             />
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             {filteredItems.map((item) => {
               const isReleasing = Boolean(
                 item.path && releasingCardPath === item.path,
@@ -384,9 +390,12 @@ export default function Home({
                     </div>
                     <div
                       className={cn(
-                        "flex-1 flex items-center justify-between gap-2 mask-[linear-gradient(to_right,white_33%,transparent_67%)] mask-no-repeat mask-size-[300%_100%] mask-position-[-800px_0] group-hover:mask-position-[0px_0] duration-300 ease-in-out",
-                        isReleasing && "mask-position-[0px_0]",
+                        "flex-1 flex items-center justify-between gap-2 mask-[linear-gradient(to_right,white_33%,transparent_67%)] mask-no-repeat mask-size-[300%_100%] group-hover:mask-position-[0px_0]! duration-300 ease-in-out",
+                        isReleasing && "mask-position-[0px_0]!",
                       )}
+                      style={{
+                        maskPosition: "100% 0",
+                      }}
                     >
                       <h3 className="whitespace-nowrap">
                         {item.series && (

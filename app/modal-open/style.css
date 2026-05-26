@@ -1,0 +1,611 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap");
+
+.modalopen-root {
+  background: #161616;
+  isolation: isolate;
+}
+
+.modalopen-root * {
+  margin: 0;
+  padding: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  text-rendering: geometricPrecision;
+  box-sizing: border-box;
+}
+.modalopen-root *::-webkit-scrollbar {
+  display: none;
+}
+
+.modalopen-root {
+  --side-panel: 200px;
+}
+
+.modalopen-root h1,
+.modalopen-root p {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: #fff;
+}
+
+.modalopen-root h1 {
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.modalopen-root p {
+  font-size: 16px;
+  letter-spacing: 0em;
+  line-height: 140%;
+}
+
+.modalopen-root p.bold {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.modalopen-root p.light {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.modalopen-root main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 32px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.modalopen-root .content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0%;
+}
+
+.modalopen-root .content {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  min-height: 500px;
+  background: #161616;
+  box-shadow: inset 0 0 150px rgba(52, 46, 45, 1);
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 16px;
+  transform: translate3d(0, 0, 0);
+  border-radius: 50px;
+  border: 2px solid #232120;
+  -webkit-border-radius: 50px;
+  will-change: box-shadow;
+  -webkit-will-change: box-shadow;
+  transition: 1s cubic-bezier(0.17, 1, 0.33, 1);
+}
+
+.modalopen-root .content.active {
+  box-shadow: inset 0 0 150px rgba(52, 46, 45, 0.7);
+  background: #0f0f0f;
+}
+
+.modalopen-root .main-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 48px;
+  -webkit-border-radius: 48px;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0px) brightness(1);
+  will-change: transform, filter;
+  -webkit-will-change: transform, filter;
+  transition: 0.6s cubic-bezier(0.17, 1, 0.33, 1);
+}
+
+.modalopen-root .content.active .main-content {
+  transform: translate3d(0, 0, 0) scale(0.9);
+  filter: blur(16px) brightness(0.7);
+  transition: 0.3s ease-out;
+}
+
+.modalopen-root .photo-wrapper {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  max-height: 400px;
+}
+
+.modalopen-root .photo {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  background: #161616;
+  border-radius: 44px;
+}
+
+.modalopen-root .main-info {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-flow: column;
+  gap: 32px;
+  padding: 32px;
+}
+
+.modalopen-root .title-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalopen-root .title-info {
+  display: flex;
+  gap: 12px;
+  padding-right: 4px;
+}
+
+@media screen and (max-width: 600px) {
+  .modalopen-root .title-info {
+    display: none;
+  }
+}
+
+.modalopen-root .songs {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  gap: 6px;
+}
+
+.modalopen-root .song {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 100%;
+  min-height: 72px;
+  border-radius: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.04);
+  padding: 0 22px;
+  margin: 0 -22px;
+  box-shadow: inset 0 0 0px 0 rgba(255, 255, 255, 0.15);
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.modalopen-root .songs .song:hover {
+  box-shadow: inset 0 0 64px 0 rgba(255, 255, 255, 0.075);
+}
+
+.modalopen-root .end {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.modalopen-root .song svg {
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.modalopen-root .songs .song:hover svg {
+  opacity: 0.5;
+}
+
+.modalopen-root .song svg:hover {
+  opacity: 1 !important;
+  cursor: pointer;
+}
+
+/* progressive blur stuffs */
+
+.modalopen-root .gradient-blur {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100%;
+  height: 101%;
+  inset: auto 0 0 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.modalopen-root .song-modal .gradient-blur {
+  height: 800px;
+  top: auto !important;
+  bottom: 0;
+}
+
+.modalopen-root .gradient-blur > div {
+  position: absolute;
+  inset: 0;
+  transition: 0.4s ease-out;
+}
+.modalopen-root .content.active .gradient-blur > div {
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: 0.5s ease-out 0.3s;
+}
+
+.modalopen-root .gradient-blur > div:nth-of-type(1) {
+  z-index: 1;
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 21%,
+    rgba(0, 0, 0, 1) 29%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 21%,
+    rgba(0, 0, 0, 1) 29%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(2) {
+  z-index: 2;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 29%,
+    rgba(0, 0, 0, 1) 37%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 29%,
+    rgba(0, 0, 0, 1) 37%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(3) {
+  z-index: 3;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 37%,
+    rgba(0, 0, 0, 1) 45%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 37%,
+    rgba(0, 0, 0, 1) 45%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(4) {
+  z-index: 4;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 1) 53%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 1) 53%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(5) {
+  z-index: 5;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 53%,
+    rgba(0, 0, 0, 1) 61%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 53%,
+    rgba(0, 0, 0, 1) 61%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(6) {
+  z-index: 6;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 61%,
+    rgba(0, 0, 0, 1) 73%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 61%,
+    rgba(0, 0, 0, 1) 69%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(7) {
+  z-index: 7;
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 69%,
+    rgba(0, 0, 0, 1) 77%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 69%,
+    rgba(0, 0, 0, 1) 77%
+  );
+}
+.modalopen-root .gradient-blur > div:nth-of-type(8) {
+  z-index: 8;
+  backdrop-filter: blur(128px);
+  -webkit-backdrop-filter: blur(128px);
+  mask: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 77%,
+    rgba(0, 0, 0, 1) 85%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 77%,
+    rgba(0, 0, 0, 1) 85%
+  );
+}
+
+/* modals */
+
+.modalopen-root .modal,
+.modalopen-root .song-modal {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background: #272322;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  border-radius: 48px;
+  -webkit-border-radius: 48px;
+  transform: translateZ(0);
+  overflow: hidden;
+  will-change: width, height;
+  -webkit-will-change: width, height;
+  cursor: pointer;
+  transition: 0.6s cubic-bezier(0.17, 1, 0.33, 1);
+}
+.modalopen-root .modal.active {
+  width: 500px;
+  height: 500px;
+  transition: 1s cubic-bezier(0.17, 1, 0.33, 1);
+  cursor: auto;
+}
+
+.modalopen-root .toggle {
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  left: 8px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0px);
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.modalopen-root .modal.active .toggle {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+}
+
+.modalopen-root .modal.active .toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modalopen-root .toggle svg {
+  transform: rotateZ(0deg);
+  transition: 1s cubic-bezier(0.32, 1.35, 0.75, 1);
+}
+.modalopen-root .modal.active .toggle svg {
+  transform: rotateZ(135deg);
+}
+
+.modalopen-root .modal-content {
+  position: relative;
+  min-width: 500px;
+  height: 500px;
+  display: flex;
+  flex-flow: column;
+  padding: 4px;
+  transform: scale(0.8);
+  transform-origin: top left;
+  transition: transform 1s cubic-bezier(0.16, 0.61, 0.23, 1);
+}
+.modalopen-root .modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modalopen-root .modal .photo {
+  object-fit: cover;
+}
+
+.modalopen-root .photo-wrapper h1 {
+  position: absolute;
+  bottom: 16px;
+  left: 32px;
+  z-index: 2;
+}
+
+.modalopen-root .info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 30px 0 30px;
+  flex: 1 1 0%;
+  overflow: scroll;
+}
+
+.modalopen-root .info-top {
+  display: flex;
+}
+
+.modalopen-root .info-top-left {
+  display: flex;
+  gap: 16px;
+  flex: 1 1 0%;
+}
+
+.modalopen-root .genre {
+  position: relative;
+  text-indent: 20px;
+}
+
+.modalopen-root .genre::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #ec66c6;
+  border-radius: 50%;
+  transform: translate(-20px, -50%);
+}
+
+.modalopen-root .divider {
+  width: 2px;
+  height: 16px;
+  background: #ffffff30;
+  transform: translateY(3px);
+  border-radius: 1px;
+}
+
+.modalopen-root .shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  opacity: 1;
+  background: #272322;
+  pointer-events: none;
+  transition:
+    0.2s linear 0.2s opacity,
+    0.2s background;
+}
+
+.modalopen-root .active .shade,
+.modalopen-root .modal:hover .shade {
+  background: #342e2d;
+}
+
+.modalopen-root .content.active .shade {
+  opacity: 0;
+  transition: 0.2s all;
+}
+
+/* song modal */
+
+.modalopen-root .song-modal {
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+  height: 72px;
+  width: calc(100% - 20px);
+  padding: 0 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition:
+    all 0.4s cubic-bezier(0.17, 1, 0.33, 1),
+    top 0s,
+    opacity 0.2s 0.4s;
+}
+
+.modalopen-root .song-modal.active {
+  opacity: 1;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  padding: 0 10px;
+  cursor: auto;
+  pointer-events: all;
+  transition:
+    all 0.6s cubic-bezier(0.17, 1, 0.33, 1),
+    top 0s,
+    opacity 0s;
+}
+
+.modalopen-root .song-modal .song {
+  position: relative;
+  z-index: 3;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0px;
+  cursor: auto;
+  transition: all 0.4s cubic-bezier(0.17, 1, 0.33, 1);
+}
+
+.modalopen-root .song-modal.active .song {
+  min-height: 88px;
+  transition: all 0.6s cubic-bezier(0.17, 1, 0.33, 1);
+}
+
+.modalopen-root .song-modal .song .bold {
+  transform: scale(1);
+  transform-origin: center left;
+  transition: all 0.4s cubic-bezier(0.17, 1, 0.33, 1);
+}
+
+.modalopen-root .song-modal.active .song .bold {
+  letter-spacing: -0.03em;
+  transform: scale(2);
+  color: rgba(255, 255, 255, 1);
+  transition: all 0.6s cubic-bezier(0.17, 1, 0.33, 1);
+}
+
+.modalopen-root .song-modal .end {
+  transform: translateX(0);
+  transition: transform 0.4s ease;
+}
+
+.modalopen-root .song-modal.active .end {
+  transform: translateX(65px);
+  transition: transform 0.2s ease;
+}
+
+.modalopen-root .song-modal .song svg {
+  transform: rotateZ(0deg);
+  transition: transform 1.2s cubic-bezier(0.32, 1.35, 0.75, 1) !important;
+}
+
+.modalopen-root .song-modal.active .song svg {
+  transform: rotateZ(-495deg);
+  opacity: 0.5;
+}
+
+.modalopen-root .song-modal-info {
+  padding: 24px;
+}
+
+.modalopen-root .song-credits {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

@@ -47,6 +47,10 @@ export default function Carousel3dComponent() {
     ) as NodeListOf<HTMLElement>;
     let containerHalf = 0;
     let containerItemsLeft: number[] = [];
+    const cleanupImageListeners: Array<() => void> = [];
+    let rafIdA = 0;
+    let rafIdB = 0;
+    let settleTimeoutId = 0;
 
     function calculateMeasurements() {
       containerHalf = containerElement.clientWidth / 4;
@@ -151,6 +155,18 @@ export default function Carousel3dComponent() {
       animate();
     };
 
+    const scheduleRecalculate = () => {
+      cancelAnimationFrame(rafIdA);
+      cancelAnimationFrame(rafIdB);
+
+      // Wait for layout to settle inside the modal's opening transition.
+      rafIdA = requestAnimationFrame(() => {
+        rafIdB = requestAnimationFrame(() => {
+          handleResize();
+        });
+      });
+    };
+
     const resetCarouselState = () => {
       selectorsElement.innerHTML = "";
       titleElement.textContent = "";
@@ -166,14 +182,49 @@ export default function Carousel3dComponent() {
       });
     };
 
+    const resizeObserver = new ResizeObserver(() => {
+      scheduleRecalculate();
+    });
+
+    resizeObserver.observe(root);
+    resizeObserver.observe(containerElement);
+
+    containerItems.forEach((item) => {
+      const img = item.querySelector("img") as HTMLImageElement | null;
+      if (!img || img.complete) {
+        return;
+      }
+
+      const handleImageReady = () => {
+        scheduleRecalculate();
+      };
+
+      img.addEventListener("load", handleImageReady);
+      img.addEventListener("error", handleImageReady);
+
+      cleanupImageListeners.push(() => {
+        img.removeEventListener("load", handleImageReady);
+        img.removeEventListener("error", handleImageReady);
+      });
+    });
+
     calculateMeasurements();
     animate();
+    scheduleRecalculate();
+    settleTimeoutId = window.setTimeout(() => {
+      handleResize();
+    }, 450);
     containerElement.addEventListener("wheel", handleWheel, {
       passive: false,
     });
     window.addEventListener("resize", handleResize);
 
     return () => {
+      resizeObserver.disconnect();
+      cleanupImageListeners.forEach((cleanup) => cleanup());
+      cancelAnimationFrame(rafIdA);
+      cancelAnimationFrame(rafIdB);
+      window.clearTimeout(settleTimeoutId);
       containerElement.removeEventListener("wheel", handleWheel);
       window.removeEventListener("resize", handleResize);
       resetCarouselState();
