@@ -30,7 +30,7 @@
 .carousel3d-root .scroll-container > div > img {
   width: 250px;
   height: 400px;
-  background: red;
+  background: black;
   object-fit: cover;
 }
 

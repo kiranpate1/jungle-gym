@@ -1,0 +1,230 @@
+.pillloader-root * {
+  text-rendering: geometricPrecision;
+}
+
+.pillloader-root {
+  background: #000;
+  display: flex;
+  justify-content: start;
+}
+
+.pillloader-root .content {
+  min-height: 100%;
+}
+
+.pillloader-root .cards {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.pillloader-root .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: 32px;
+  min-width: 400px;
+  max-width: 400px;
+  margin: 0 100px;
+  cursor: pointer;
+}
+
+.pillloader-root .cover-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+}
+
+.pillloader-root img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 72px;
+  opacity: 0.5;
+  overflow: hidden;
+  transition: 0.4s 0.2s;
+}
+
+.pillloader-root .card:hover img {
+  opacity: 1;
+}
+
+.pillloader-root h1 {
+  position: relative;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.3);
+  transition: 0.4s 0.2s;
+}
+.pillloader-root .card:hover h1 {
+  color: rgba(255, 255, 255, 1);
+}
+
+.pillloader-root .tag-wrapper {
+  position: relative;
+  z-index: -1;
+  top: -16px;
+  right: 0;
+  height: 40px;
+}
+
+.pillloader-root .tags {
+  position: relative;
+  top: 0;
+  height: 40px;
+  display: flex;
+  gap: 8px;
+  justify-content: stretch;
+  opacity: 0;
+  transition: 1s ease;
+}
+.pillloader-root .card:hover .tags {
+  opacity: 1;
+  transition: 0.4s ease;
+}
+
+.pillloader-root .tag {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: #fff;
+  color: #000;
+  border-radius: 20px;
+}
+
+.pillloader-root .gradient-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 100%;
+  height: 400px;
+}
+
+.pillloader-root .gradient-blur {
+  width: 200%;
+  min-height: 100%;
+  inset: auto 0 0 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: transform 1s ease;
+}
+.pillloader-root .card:hover .gradient-blur {
+  transform: translateX(50%);
+}
+.pillloader-root .gradient-blur > div,
+.pillloader-root .gradient-blur::before,
+.pillloader-root .gradient-blur::after {
+  position: absolute;
+  inset: 0;
+}
+
+.pillloader-root .gradient-blur::before {
+  content: "";
+  z-index: 1;
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 5%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 5%
+  );
+}
+.pillloader-root .gradient-blur > div:nth-of-type(1) {
+  z-index: 2;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1) 10%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 5%,
+    rgba(0, 0, 0, 1) 10%
+  );
+}
+.pillloader-root .gradient-blur > div:nth-of-type(2) {
+  z-index: 3;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 15%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 10%,
+    rgba(0, 0, 0, 1) 15%
+  );
+}
+.pillloader-root .gradient-blur > div:nth-of-type(3) {
+  z-index: 4;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 20%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 15%,
+    rgba(0, 0, 0, 1) 20%
+  );
+}
+.pillloader-root .gradient-blur > div:nth-of-type(4) {
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 25%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 1) 25%
+  );
+}
+.pillloader-root .gradient-blur > div:nth-of-type(5) {
+  z-index: 6;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 30%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 1) 30%
+  );
+}
+.pillloader-root .gradient-blur > div:nth-of-type(6) {
+  z-index: 7;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 35%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 1) 35%
+  );
+}
+.pillloader-root .gradient-blur::after {
+  content: "";
+  z-index: 8;
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
+  mask: linear-gradient(to right, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 1) 40%);
+  -webkit-mask: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 1) 40%
+  );
+}

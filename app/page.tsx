@@ -157,13 +157,14 @@ function PreviewMedia({
             )}
             style={{
               objectFit:
-                item.type === "Video" ||
+                (item.type === "Video" && item.name !== "Diagonal Carousel") ||
                 item.name === "Dynamic Contents" ||
                 item.name === "Album surfer" ||
                 item.name === "Stack / Grid toggle" ||
                 item.name === "Light/Dark Scroll" ||
                 item.name === "Temperature control" ||
-                item.name === "Sound control"
+                item.name === "Sound control" ||
+                item.name === "Album selector"
                   ? "contain"
                   : "cover",
             }}
@@ -178,9 +179,13 @@ function PreviewMedia({
               playsInline
               preload="metadata"
               className={cn(
-                "absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+                "absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-200",
                 isVideoReady ? "block" : "hidden",
               )}
+              style={{
+                objectFit:
+                  item.name === "Diagonal Carousel" ? "cover" : "contain",
+              }}
               onLoadedMetadata={markVideoReady}
               onLoadedData={markVideoReady}
             />
