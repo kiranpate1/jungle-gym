@@ -228,6 +228,8 @@
   position: absolute;
   inset: 0;
   opacity: 1;
+  border-bottom-right-radius: 14px;
+  border-bottom-left-radius: 14px;
   transition:
     0.3s ease-out,
     opacity 0.6s 0.8s;
@@ -235,17 +237,17 @@
 .singleselect-root nav.active .gradient-blur > div {
   /*   opacity: 0; */
   backdrop-filter: blur(0px);
-  inset: -100px;
-  -webkit-backdrop-filter: blur(0px);
+  /* inset: -100px; */
+  /* -webkit-backdrop-filter: blur(0px); */
   transition:
-    0.8s ease-out 0.2s,
+    0.6s ease-out 0.2s,
     opacity 0.6s 0.6s;
 }
 
 .singleselect-root .gradient-blur > div:nth-of-type(1) {
   z-index: 1;
   backdrop-filter: blur(0.5px);
-  -webkit-backdrop-filter: blur(0.5px);
+  /* -webkit-backdrop-filter: blur(0.5px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 23%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -256,7 +258,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(2) {
   z-index: 2;
   backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  /* -webkit-backdrop-filter: blur(1px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 23%, rgba(0, 0, 0, 1) 31%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -267,7 +269,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(3) {
   z-index: 3;
   backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  /* -webkit-backdrop-filter: blur(3px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 1) 39%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -278,7 +280,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(4) {
   z-index: 4;
   backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  /* -webkit-backdrop-filter: blur(7px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 39%, rgba(0, 0, 0, 1) 47%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -289,7 +291,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(5) {
   z-index: 5;
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* -webkit-backdrop-filter: blur(16px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 47%, rgba(0, 0, 0, 1) 55%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -300,7 +302,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(6) {
   z-index: 6;
   backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
+  /* -webkit-backdrop-filter: blur(32px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 1) 63%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -311,7 +313,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(7) {
   z-index: 7;
   backdrop-filter: blur(64px);
-  -webkit-backdrop-filter: blur(64px);
+  /* -webkit-backdrop-filter: blur(64px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 63%, rgba(0, 0, 0, 1) 71%);
   -webkit-mask: linear-gradient(
     to bottom,
@@ -322,7 +324,7 @@
 .singleselect-root .gradient-blur > div:nth-of-type(8) {
   z-index: 8;
   backdrop-filter: blur(128px);
-  -webkit-backdrop-filter: blur(128px);
+  /* -webkit-backdrop-filter: blur(128px); */
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 71%, rgba(0, 0, 0, 1) 79%);
   -webkit-mask: linear-gradient(
     to bottom,

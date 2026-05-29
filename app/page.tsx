@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { items } from "./items";
 import Tag from "./components/Tag";
+import PillLoaderComponent from "./pill-loader/PillLoaderComponent";
 
 export const pendingCardReleaseKey = "jungle-gym:pending-card-release";
 
@@ -300,80 +301,82 @@ export default function Home({
     <main>
       <section className="flex flex-col items-center">
         <div className="w-full flex flex-col items-center gap-12 px-4 py-8">
-          <div
-            className={cn(
-              "sticky z-10 top-4 w-full max-w-[1000px] flex items-start justify-between duration-200 ease-in-out",
-              scrolledPastThreshold && "max-w-full",
-            )}
-          >
+          <div className="fixed z-10 inset-[16px_16px_auto_16px] flex flex-col items-center">
             <div
               className={cn(
-                "absolute inset-[-12px_-12px_auto_-12px] h-12.75 opacity-0 bg-[#111111] border-[1.5px] border-white/5 rounded-[20px] squircle pointer-events-none duration-200",
-                scrolledPastThreshold && "opacity-100! xl:opacity-0!",
-              )}
-            ></div>
-            <div className="relative w-full flex flex-col gap-8 items-start">
-              <h1
-                className={cn(
-                  "origin-top-left duration-200 ease-in-out whitespace-nowrap",
-                  scrolledPastThreshold && "scale-50",
-                )}
-              >
-                Jungle Gym
-              </h1>
-              <div
-                className={cn(
-                  "w-full flex items-stretch gap-2 flex-wrap origin-top-left transition-transform duration-200 ease-in-out",
-                  scrolledPastThreshold &&
-                    "xl:w-[calc(50vw-470px)] scale-[0.8] translate-x-32 xl:translate-x-0 -translate-y-21 xl:-translate-y-12",
-                )}
-              >
-                {allCategories.map((category) => (
-                  <Tag
-                    key={category}
-                    type={category}
-                    active={selectedCategories.includes(category)}
-                    onClick={() => toggleCategory(category)}
-                  />
-                ))}
-                <button
-                  type="button"
-                  onClick={clearFilters}
-                  aria-label="Clear category filters"
-                  className="min-w-8 aspect-square flex items-center justify-center border-[1.5px] border-white/5 bg-transparent hover:bg-white/5 rounded-2xl squircle text-white/40 hover:text-white duration-300 cursor-pointer"
-                >
-                  <svg
-                    width="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 12L18 18M12 12L6 6M12 12L6 18M12 12L18 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div
-              className={cn(
-                "absolute right-0 w-40 h-8 origin-top-right top-[calc(100%-2rem)] duration-200 ease-in-out",
-                scrolledPastThreshold && "top-0! scale-[0.8]",
+                "relative w-full max-w-[1000px] flex items-start justify-between duration-200 ease-in-out",
+                scrolledPastThreshold && "max-w-full",
               )}
             >
-              <input
-                className="w-full h-full flex items-center px-2 bg-transparent border-[1.5px] border-white/5 hover:border-white/10 rounded-2xl squircle text-sm text-white/60 focus:bg-white/2.5 focus:border-white/10 focus:outline-none transition-all duration-200"
-                type="text"
-                name="test"
-                placeholder="Search..."
-              />
+              <div
+                className={cn(
+                  "absolute inset-[-12px_-12px_auto_-12px] h-12.75 opacity-0 bg-[#111111] border-[1.5px] border-white/5 rounded-[20px] squircle pointer-events-none duration-200",
+                  scrolledPastThreshold && "opacity-100! xl:opacity-0!",
+                )}
+              ></div>
+              <div className="relative w-full flex flex-col gap-8 items-start">
+                <h1
+                  className={cn(
+                    "origin-top-left duration-200 ease-in-out whitespace-nowrap",
+                    scrolledPastThreshold && "scale-50",
+                  )}
+                >
+                  Jungle Gym
+                </h1>
+                <div
+                  className={cn(
+                    "w-full flex items-stretch gap-2 flex-wrap origin-top-left transition-transform duration-200 ease-in-out",
+                    scrolledPastThreshold &&
+                      "xl:w-[calc(50vw-470px)] scale-[0.8] translate-x-32 xl:translate-x-0 -translate-y-21 xl:-translate-y-12",
+                  )}
+                >
+                  {allCategories.map((category) => (
+                    <Tag
+                      key={category}
+                      type={category}
+                      active={selectedCategories.includes(category)}
+                      onClick={() => toggleCategory(category)}
+                    />
+                  ))}
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    aria-label="Clear category filters"
+                    className="min-w-8 aspect-square flex items-center justify-center border-[1.5px] border-white/5 bg-transparent hover:bg-white/5 rounded-2xl squircle text-white/40 hover:text-white duration-300 cursor-pointer"
+                  >
+                    <svg
+                      width="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 12L18 18M12 12L6 6M12 12L6 18M12 12L18 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                className={cn(
+                  "absolute right-0 w-40 h-[32.2px] origin-top-right top-[calc(100%-2rem)] duration-200 ease-in-out",
+                  scrolledPastThreshold && "top-0! scale-[0.8]",
+                )}
+              >
+                <input
+                  className="w-full h-full flex items-center px-2 bg-transparent border-[1.5px] border-white/5 hover:border-white/10 rounded-2xl squircle text-sm text-white/60 focus:bg-white/2.5 focus:border-white/10 focus:outline-none transition-all duration-200"
+                  type="text"
+                  name="test"
+                  placeholder="Search..."
+                />
+              </div>
             </div>
           </div>
-          <div className="w-full max-w-[1000px] grid grid-cols-1 lg:grid-cols-2 gap-2">
+          <div className="w-full max-w-[1000px] mt-32 grid grid-cols-1 lg:grid-cols-2 gap-2">
             {filteredItems.map((item) => {
               const isReleasing = Boolean(
                 item.path && releasingCardPath === item.path,

@@ -134,7 +134,7 @@ export default function MultiSelectComponent() {
       navEl.classList.add("lighter");
 
       if (isOpen) {
-        contentEl.style.height = `${trayHeight}px`;
+        contentEl.style.height = `${360}px`;
         animateTagsDown();
         timeouts.push(
           window.setTimeout(() => {

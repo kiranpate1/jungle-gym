@@ -178,17 +178,18 @@ export default function AlbumSelectorComponent() {
       const photoWrapper = item.querySelector(
         ".photo-wrapper",
       ) as HTMLDivElement;
-      const photo = item.querySelector(".photo") as HTMLDivElement;
+      const photo = item.querySelector(".photo") as HTMLImageElement;
 
-      const photoShadow = photo.cloneNode(true) as HTMLDivElement;
+      photo.style.backgroundColor = info[i].colorVar;
+      photoWrapper.style.backgroundColor = info[i].colorVar;
+
+      const photoShadow = photo.cloneNode(true) as HTMLImageElement;
       photoShadow.style.filter = "brightness(1.5) saturate(1) blur(48px)";
       photoShadow.style.zIndex = "auto";
       photoShadow.style.transform = "translate3d(0, 0, 0)";
+      photoShadow.style.backgroundColor = info[i].colorVar;
       photoWrapper.appendChild(photoShadow);
       photoShadows.push(photoShadow);
-
-      (item.querySelectorAll(".photo")[0] as HTMLDivElement).style.background =
-        info[i].colorVar;
 
       const handler = () => animate(i);
       item.addEventListener("click", handler);

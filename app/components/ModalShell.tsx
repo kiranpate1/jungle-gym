@@ -107,9 +107,9 @@ export default function ModalShell({
         className="relative"
         ref={windowRef}
       >
-        <div className="relative w-full h-full flex flex-col items-stretch rounded-3xl squircle overflow-hidden bg-[#000] border-2 border-white/5">
+        <div className="relative w-full h-full flex flex-col items-stretch rounded-3xl overflow-hidden bg-[#000] border-2 border-white/5">
           <div
-            className="flex-1 relative w-full h-full rounded-xl squircle overflow-hidden"
+            className="flex-1 relative w-full h-full rounded-xl overflow-hidden"
             style={{ backgroundColor: activeItem?.color ?? "transparent" }}
           >
             {children}

@@ -206,7 +206,7 @@ export const items = [
     name: "Pill load-in",
     type: "Interaction",
     categories: ["Web", "Motion"],
-    preview: "",
+    preview: "/previews/pill-loader.png",
     year: "2023",
     path: "/pill-loader",
     color: "#000",
