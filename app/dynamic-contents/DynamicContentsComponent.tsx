@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable react/no-unescaped-entities */
+
 import { useRef, useEffect, useState, useMemo } from "react";
 import "./style.css";
 import Image from "next/image";
@@ -441,26 +443,26 @@ export default function FlightsComponent() {
                   <li>
                     {" "}
                     Spencer, Ashley (September 24, 2024). Disney High: The
-                    Untold Story of the Rise and Fall of Disney Channel's Tween
-                    Empire. St. Martin's Press. ISBN 9781250283450. Retrieved
-                    March 17, 2025.
+                    Untold Story of the Rise and Fall of Disney Channel&apos;s
+                    Tween Empire. St. Martin's Press. ISBN 9781250283450.
+                    Retrieved March 17, 2025.
                   </li>
                   <li>
                     {" "}
-                    Newsome, Brad (February 1, 2007). "Pay TV - Friday". The
-                    Age. p. 18. Retrieved October 28, 2010.
+                    Newsome, Brad (February 1, 2007). &quot;Pay TV -
+                    Friday&quot;. The Age. p. 18. Retrieved October 28, 2010.
                   </li>
                   <li>
                     {" "}
-                    "Legacy Content". LaughingPlace.com. Retrieved July 29,
-                    2023.
+                    &quot;Legacy Content&quot;. LaughingPlace.com. Retrieved
+                    July 29, 2023.
                   </li>
                   <li>
                     {" "}
-                    Parker, Lewis (January 13, 2026). "Cory In The House
-                    Fanatics Have Nearly Dethroned Clair Obscur As Metacritic's
-                    Highest User-Rated Game". Kotaku. Kotaku. Retrieved January
-                    14, 2026.
+                    Parker, Lewis (January 13, 2026). &quot;Cory In The House
+                    Fanatics Have Nearly Dethroned Clair Obscur As
+                    Metacritic&apos;s Highest User-Rated Game&quot;. Kotaku.
+                    Kotaku. Retrieved January 14, 2026.
                   </li>
                 </ol>
               </div>

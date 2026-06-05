@@ -399,7 +399,7 @@ export default function AlbumSurferComponent() {
       if (isDisposed) {
         return;
       }
-      let transform = `scaleY(${(Math.abs(speed) + 1) * 1}) rotateX(${
+      const transform = `scaleY(${(Math.abs(speed) + 1) * 1}) rotateX(${
         (speed > 0.5 ? 0.5 : speed < -0.5 ? -0.5 : speed) * 180
       }deg)`;
       if (activeIndex !== previousActiveIndex) {

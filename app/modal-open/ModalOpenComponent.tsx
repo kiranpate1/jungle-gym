@@ -178,7 +178,7 @@ export default function ModalOpenComponent() {
                     <p className="light">0:50</p>
                   </div>
                   <div className="song">
-                    <p className="bold">Texas Hold 'Em'</p>
+                    <p className="bold">Texas Hold &apos;Em&apos;</p>
                     <p className="light">3:53</p>
                   </div>
                 </div>
@@ -328,15 +328,15 @@ export default function ModalOpenComponent() {
                   </div>
                   <p className="bold">
                     Beyoncé Giselle Knowles-Carter is an American singer,
-                    songwriter, and businesswoman. Nicknamed "Queen Bey", she is
-                    regarded as a prominent cultural figure of the 21st century.
-                    Throughout her two-decade career, Beyoncé has been
-                    recognized for her distinctive vocal range, live
+                    songwriter, and businesswoman. Nicknamed &quot;Queen
+                    Bey&quot;, she is regarded as a prominent cultural figure of
+                    the 21st century. Throughout her two-decade career, Beyoncé
+                    has been recognized for her distinctive vocal range, live
                     performances, and songwriting. Rolling Stone named her the
-                    world's greatest living entertainer, and one of the greatest
-                    vocalists of all time. Rolling Stone named her the world's
-                    greatest living entertainer, and one of the greatest
-                    vocalists of all time.
+                    world&apos;s greatest living entertainer, and one of the
+                    greatest vocalists of all time. Rolling Stone named her the
+                    world&apos;s greatest living entertainer, and one of the
+                    greatest vocalists of all time.
                   </p>
                 </div>
               </div>
