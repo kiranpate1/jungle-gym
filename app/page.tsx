@@ -203,6 +203,7 @@ export default function Home({
   initialReleasePath?: string | null;
 }) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [scrolledPastThreshold, setScrolledPastThreshold] = useState(
     cachedScrolledPastThreshold,
   );
@@ -255,17 +256,42 @@ export default function Home({
   );
 
   const filteredItems = useMemo(() => {
-    if (selectedCategories.length === 0) {
-      return items;
-    }
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+    const queryTerms = normalizedQuery.split(/\s+/).filter(Boolean);
 
     return items.filter((item) => {
       const itemCategories = getItemCategories(item);
-      return selectedCategories.some((category) =>
-        itemCategories.includes(category),
+      const matchesCategoryFilter =
+        selectedCategories.length === 0 ||
+        selectedCategories.some((category) =>
+          itemCategories.includes(category),
+        );
+
+      if (!matchesCategoryFilter) {
+        return false;
+      }
+
+      if (!normalizedQuery) {
+        return true;
+      }
+
+      const searchableWords = [
+        item.series,
+        item.name,
+        item.type,
+        ...itemCategories,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter(Boolean);
+
+      return queryTerms.every((term) =>
+        searchableWords.some((word) => word.startsWith(term)),
       );
     });
-  }, [selectedCategories]);
+  }, [searchQuery, selectedCategories]);
 
   const toggleCategory = (category: string) => {
     setSelectedCategories((prev) =>
@@ -277,6 +303,7 @@ export default function Home({
 
   const clearFilters = () => {
     setSelectedCategories([]);
+    setSearchQuery("");
   };
 
   useLayoutEffect(() => {
@@ -300,7 +327,58 @@ export default function Home({
   return (
     <main>
       <section className="flex flex-col items-center">
-        <div className="w-full flex flex-col items-center gap-12 px-4 py-8">
+        <div className="relative w-full flex flex-col items-center gap-12 px-4 py-8">
+          <div className="absolute z-100 w-[calc(100dvw-32px)] max-w-[1000px] h-0">
+            <div className="absolute top-0 right-0 flex items-center gap-2 text-[rgba(255,255,255,0.4)] duration-200">
+              <small className="caption">
+                by{" "}
+                <a
+                  className="hover:underline hover:text-[rgba(255,255,255,0.6)]"
+                  href="https://www.kiranpa.tel/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  kiran patel
+                </a>
+              </small>
+              <a
+                className="text-[rgba(255,255,255,0.3)] hover:text-[rgba(255,255,255,0.5)] duration-200"
+                href="mailto:kp8568@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  width="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19 4H5C4.20435 4 3.44129 4.31607 2.87868 4.87868C2.31607 5.44129 2 6.20435 2 7V17C2 17.7956 2.31607 18.5587 2.87868 19.1213C3.44129 19.6839 4.20435 20 5 20H19C19.7956 20 20.5587 19.6839 21.1213 19.1213C21.6839 18.5587 22 17.7956 22 17V7C22 6.20435 21.6839 5.44129 21.1213 4.87868C20.5587 4.31607 19.7956 4 19 4ZM19 6L12.5 10.47C12.348 10.5578 12.1755 10.604 12 10.604C11.8245 10.604 11.652 10.5578 11.5 10.47L5 6H19Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+              <a
+                className="text-[rgba(255,255,255,0.3)] hover:text-[rgba(255,255,255,0.5)] duration-200"
+                href="https://www.x.com/pate1kiran"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  width="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28004 9.09 5.11004 7.38 3.00004 4.79C2.63004 5.42 2.42004 6.16 2.42004 6.94C2.42004 8.43 3.17004 9.75 4.33004 10.5C3.62004 10.5 2.96004 10.3 2.38004 10V10.03C2.38004 12.11 3.86004 13.85 5.82004 14.24C5.19088 14.4129 4.53008 14.4369 3.89004 14.31C4.16165 15.1625 4.69358 15.9084 5.41106 16.4429C6.12854 16.9775 6.99549 17.2737 7.89004 17.29C6.37371 18.4905 4.49405 19.1394 2.56004 19.13C2.22004 19.13 1.88004 19.11 1.54004 19.07C3.44004 20.29 5.70004 21 8.12004 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
           <div className="fixed z-10 inset-[16px_16px_auto_16px] flex flex-col items-center">
             <div
               className={cn(
@@ -370,7 +448,9 @@ export default function Home({
                 <input
                   className="w-full h-full flex items-center px-2 bg-transparent border-[1.5px] border-white/5 hover:border-white/10 rounded-2xl squircle text-sm text-white/60 focus:bg-white/2.5 focus:border-white/10 focus:outline-none transition-all duration-200"
                   type="text"
-                  name="test"
+                  name="search"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
                   placeholder="Search..."
                 />
               </div>

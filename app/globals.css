@@ -69,6 +69,11 @@ small {
   line-height: 80%;
 }
 
+.caption {
+  font-size: 12px;
+  letter-spacing: -0.02em;
+}
+
 svg {
   vector-effect: non-scaling-stroke;
 }
