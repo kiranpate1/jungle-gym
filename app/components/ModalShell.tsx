@@ -43,6 +43,15 @@ export default function ModalShell({
 
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [alignControlsRight, setAlignControlsRight] = useState(false);
+  const hintHoverRef = useRef<HTMLDivElement | null>(null);
+  const hintBoxRef = useRef<HTMLDivElement | null>(null);
+  const [isHintHovered, setIsHintHovered] = useState(false);
+  const [hintDimensions, setHintDimensions] = useState<{
+    collapsedWidth: number;
+    collapsedHeight: number;
+    expandedWidth: number;
+    expandedHeight: number;
+  } | null>(null);
   const WINDOW_TRANSITION_MS = 350;
 
   const toggleScreenSize = () => {
@@ -82,6 +91,34 @@ export default function ModalShell({
     };
   }, [isFullscreen]);
 
+  useEffect(() => {
+    const hoverEl = hintHoverRef.current;
+    const boxEl = hintBoxRef.current;
+
+    if (!hoverEl || !boxEl) {
+      return;
+    }
+
+    const collapsedWidth = hoverEl.offsetWidth;
+    const collapsedHeight = hoverEl.offsetHeight;
+
+    const measureExpandedDimensions = () => {
+      setHintDimensions({
+        collapsedWidth,
+        collapsedHeight,
+        expandedWidth: Math.ceil(boxEl.scrollWidth),
+        expandedHeight: Math.ceil(boxEl.scrollHeight),
+      });
+    };
+
+    measureExpandedDimensions();
+    window.addEventListener("resize", measureExpandedDimensions);
+
+    return () => {
+      window.removeEventListener("resize", measureExpandedDimensions);
+    };
+  }, []);
+
   return (
     <div
       onClick={(e) => {
@@ -114,23 +151,78 @@ export default function ModalShell({
           >
             {children}
           </div>
-          <div className="w-full flex items-center gap-4 p-4">
-            <h3 className="whitespace-nowrap">
-              {activeItem?.series && (
-                <span className="text-white/60">{activeItem.series} / </span>
-              )}
-              <span className="text-white/90">{activeItem?.name}</span>
-            </h3>
-            <div className="flex items-stretch gap-2">
-              {activeItem?.categories.map((cat, i) => (
-                <div
-                  className="px-1.75 py-2.25 border-[1.5px] border-white/5 bg-white/2.5 text-white/60 rounded-2xl squircle whitespace-nowrap"
-                  key={i}
-                >
-                  <small>{cat}</small>
-                </div>
-              ))}
+          <div className="w-full flex items-center justify-between gap-4 p-4">
+            <div className="flex items-center gap-4">
+              <h3 className="whitespace-nowrap">
+                {activeItem?.series && (
+                  <span className="text-white/60">{activeItem.series} / </span>
+                )}
+                <span className="text-white/90">{activeItem?.name}</span>
+              </h3>
+              <div className="flex items-stretch gap-2">
+                {activeItem?.categories.map((cat, i) => (
+                  <div
+                    className="px-1.75 py-2.25 border-[1.5px] border-white/5 bg-white/2.5 text-white/60 rounded-2xl squircle whitespace-nowrap"
+                    key={i}
+                  >
+                    <small>{cat}</small>
+                  </div>
+                ))}
+              </div>
             </div>
+            {activeItem?.hint && (
+              <div className="relative z-100 h-8 w-39 flex items-end justify-end">
+                <div
+                  className="absolute h-11 w-39 flex items-end justify-end translate-1.75 bg-[rgba(255,255,255,0.075)] hover:bg-[rgba(0,0,0,0.5)] backdrop-blur-md rounded-[22px] border border-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.1)] transition-all duration-300 ease-in-out cursor-help overflow-hidden"
+                  ref={hintHoverRef}
+                  onMouseEnter={() => setIsHintHovered(true)}
+                  onMouseLeave={() => setIsHintHovered(false)}
+                  style={
+                    hintDimensions
+                      ? {
+                          width: `${isHintHovered ? hintDimensions.expandedWidth : hintDimensions.collapsedWidth}px`,
+                          height: `${isHintHovered ? hintDimensions.expandedHeight : hintDimensions.collapsedHeight}px`,
+                        }
+                      : undefined
+                  }
+                >
+                  <div
+                    className="min-w-[250px] flex flex-col gap-0"
+                    ref={hintBoxRef}
+                  >
+                    <div className="w-full p-4">
+                      <p className="text-pretty">{activeItem.hint}</p>
+                    </div>
+                    <div className="flex h-10.5 items-center justify-end pr-2.5 gap-2 text-white/60">
+                      <small>Interaction hint</small>
+                      <svg
+                        width="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                        <path
+                          d="M11.999 7H12.009M11.999 17V10.75"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div

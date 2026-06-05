@@ -10,6 +10,7 @@ export const items = [
     preview: "/previews/dynamic-select.png",
     path: "/dynamic-select",
     color: "transparent",
+    hint: "Click on top bar of modal, select tags and click bar to close",
   },
   {
     series: "",
@@ -21,6 +22,7 @@ export const items = [
     path: "/dynamic-contents",
     isNew: true,
     color: "#fff",
+    hint: "Scroll in body, view contents update in real time",
   },
   // {
   //   series: "",
@@ -42,6 +44,7 @@ export const items = [
     preview: "/previews/3d-carousel.png",
     path: "/3d-carousel",
     color: "#fff",
+    hint: "Scroll in body to move carousel in 3d space",
   },
   // {
   //   series: "",
@@ -73,6 +76,7 @@ export const items = [
     preview: "/previews/multiselect.png",
     path: "/multiselect",
     color: "#070A0E",
+    hint: "Open modal and select multiple tags, click top bar to close",
   },
   {
     series: "Tags",
@@ -83,6 +87,7 @@ export const items = [
     year: "2025",
     path: "/singleselect",
     color: "#070A0E",
+    hint: "Open/close modal to view magnetic blur effect",
   },
   {
     series: "Car UI",
@@ -93,6 +98,7 @@ export const items = [
     year: "2024",
     path: "/car-temperature",
     color: "#000",
+    hint: "Drag sliders to adjust temperature and fan intensity",
   },
   {
     series: "Car UI",
@@ -103,6 +109,7 @@ export const items = [
     year: "2024",
     path: "/car-sound",
     color: "#000",
+    hint: "Pause, play and switch tracks using the controls",
   },
   {
     series: "Skeumorphic",
@@ -113,6 +120,7 @@ export const items = [
     year: "2024",
     path: "/button-toggle",
     color: "#fff",
+    hint: "Toggle the button to see the depth effect",
   },
   {
     series: "Skeumorphic",
@@ -123,6 +131,7 @@ export const items = [
     year: "2024",
     path: "/flashlight",
     color: "#000",
+    hint: "Use the flashlight to illuminate skeumorphic elements in the scene",
   },
   {
     series: "",
@@ -133,6 +142,7 @@ export const items = [
     year: "2024",
     path: "/signature",
     color: "transparent",
+    hint: "Type in the input to see your signature animate in real time",
   },
   {
     series: "",
@@ -143,6 +153,7 @@ export const items = [
     year: "2025",
     path: "/album-surfer",
     color: "#fff",
+    hint: "Hover on lefthand side albums to navigate the artist's discography",
   },
   // {
   //   series: "Music player",
@@ -171,6 +182,7 @@ export const items = [
     year: "2024",
     path: "/album-selector",
     color: "#0A0C16",
+    hint: "Use slider at bottom to navigate through artist's albums",
   },
   // {
   //   series: "Music player",
@@ -190,6 +202,7 @@ export const items = [
     year: "2024",
     path: "/stack-grid",
     color: "#444444",
+    hint: "Use view toggle at bottom to switch between stacked and grid views",
   },
   {
     series: "",
@@ -200,6 +213,7 @@ export const items = [
     year: "2024",
     path: "/modal-open",
     color: "#161616",
+    hint: "Click on top left button to open modal & view blur effect",
   },
   {
     series: "",
@@ -210,6 +224,7 @@ export const items = [
     year: "2023",
     path: "/pill-loader",
     color: "#000",
+    hint: "Hover on cards to view pills load in effect",
   },
   {
     series: "",
@@ -220,6 +235,7 @@ export const items = [
     year: "2024",
     path: "/cards-hover",
     color: "#fff",
+    hint: "Hover on cards to view liquid background effect",
   },
   {
     series: "Superpower.com",
@@ -301,13 +317,13 @@ export const items = [
   {
     series: "",
     name: "Light/Dark Scroll",
-    type: "Video",
-    categories: ["Visual Design", "Motion"],
+    type: "Interaction",
+    categories: ["Visual Design", "Web"],
     preview: "/previews/light-dark-scroll.png",
-    video: "/videos/light-dark-scroll.mp4",
     year: "2023",
     path: "/light-dark-scroll",
     color: "#fff",
+    hint: "Scroll through body to see light and dark versions of the design",
   },
   {
     series: "",
