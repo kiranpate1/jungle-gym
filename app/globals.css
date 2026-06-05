@@ -77,3 +77,16 @@ small {
 svg {
   vector-effect: non-scaling-stroke;
 }
+
+/* main {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  animation: loadIn 0.5s ease-out 0.25s forwards;
+}
+
+@keyframes loadIn {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+} */
