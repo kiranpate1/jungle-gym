@@ -328,7 +328,7 @@ export default function Home({
     <main>
       <section className="flex flex-col items-center">
         <div className="relative w-full flex flex-col items-center gap-12 px-4 py-8">
-          <div className="absolute z-100 w-[calc(100dvw-32px)] max-w-[1000px] h-0">
+          <div className="absolute z-11 w-[calc(100dvw-32px)] max-w-[1000px] h-0">
             <div className="absolute top-0 right-0 flex items-center gap-2 text-[rgba(255,255,255,0.4)] duration-200">
               <small className="caption">
                 by{" "}
