@@ -124,7 +124,7 @@ export default function ModalOpenComponent() {
               <div className="photo-wrapper">
                 <img
                   className="photo"
-                  src="https://ca-times.brightspotcdn.com/dims4/default/d5f6173/2147483647/strip/true/crop/4436x4403+0+0/resize/1200x1191!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F5b%2F8d%2F9918bf924c09ae2ff707b58a9484%2Fcowboy-carter-press-03.jpg"
+                  src="https://cdn.prod.website-files.com/65cceef869e5a56037c32801/6a3996e95bc8e19b2b7624d9_31BEYONCE-REVIEW-fjtz-superJumbo.webp"
                 />
               </div>
               <div className="main-info">
